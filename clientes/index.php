@@ -12,6 +12,48 @@ if(!isset($_SESSION['username'])){
 <head>
 <?php include '../../css/header.php'; ?>
 <title>PPP - Administrar Clientes</title>
+
+<style>
+	
+table.table-fh {
+    width: 100%;
+}
+table.table-fh, table.table-fh > tbody > tr > td {
+    border-collapse: collapse;
+    border: 1px solid #000;
+}
+table.table-fh > thead {
+    display: table;
+    width: calc(100% - 17px);
+}
+table.table-fh > tbody {
+    display: block;
+    max-height: 75vh;
+    overflow-y: scroll;
+}
+
+table.table-fh.table-11c > thead > tr >th, table.table-fh.table-11c > tbody > tr > td {
+    width: calc(100% / 11);
+}
+
+table.table-fh > thead > tr >th, table.table-fh > tbody > tr > td {
+    padding: 5px;
+    word-break: break-all;
+    text-align: left;
+}
+table.table-fh > tbody > tr {
+    display: table;
+    width: 100%;
+}
+table.table-fh > tbody > tr > td {
+    border: none;
+}
+body {
+	overflow-y: hidden;
+}
+
+</style>
+
 </head>
 <body>
 
@@ -63,8 +105,8 @@ $result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
 		<tr >
 			<th style="width: 5%"><h6>CODIGO</h6></th>
 			<th style="width: 15%"><h6>RAZON SOCIAL</h6></th>
-			<th style="width: 5%"><h6>ESTADO</h6></th>
-			<th style="width: 5%"><h6>HABILITADO</h6></th>
+			<th style="width: 5%"><h6>TILDE<br>NO MUESTRA<br>EN PPP</h6></th>
+			<th style="width: 5%"><h6>HABILITADO<br>PEDIDOS</h6></th>
 			<th style="width: 5%"><input type="submit" value="Grabar" class="btn btn-outline-success"></th>
 		</tr>
 	</thead>
