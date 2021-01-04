@@ -138,11 +138,20 @@ $result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
 
 <h2 align="center">Años Anteriores</h2></br>
 
-<div class="btn-group" role="group" aria-label="Basic example" style="margin-left:45%">
-  <!--<button type="button" class="btn btn-primary" onclick="location.href='historial/historial_index.php?anio=2016'">2016</button>-->
-  <button type="button" class="btn btn-primary" onclick="location.href='historial/historial_index.php?anio=2017'">2017</button>
-  <button type="button" class="btn btn-secondary" onclick="location.href='historial/historial_index.php?anio=2018'">2018</button>
-  <button type="button" class="btn btn-primary" onclick="location.href='historial/historial_index.php?anio=2019'">2019</button>
+<div class="row">
+	<div class="col-3">
+	</div>
+	<div class="col-6" >
+		<div class="row justify-content-md-center">
+			<!-- <button type="button" class="btn btn-primary ml-1 mr-1" onclick="location.href='historial/historial_index.php?anio=2016'">2016</button> -->
+			<button type="button" class="btn btn-secondary ml-1 mr-1" onclick="location.href='historial/historial_index.php?anio=2017'">2017</button>
+			<button type="button" class="btn btn-primary ml-1 mr-1" onclick="location.href='historial/historial_index.php?anio=2018'">2018</button>
+			<button type="button" class="btn btn-secondary ml-1 mr-1" onclick="location.href='historial/historial_index.php?anio=2019'">2019</button>
+			<button type="button" class="btn btn-primary ml-1 mr-1" onclick="location.href='historial/historial_index.php?anio=2020'">2020</button>
+		</div>
+	</div>
+	<div class="col-3">
+	</div>
 </div>
 
 
