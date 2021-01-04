@@ -105,7 +105,10 @@ $result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
 		<tr >
 			<th style="width: 5%"><h6>CODIGO</h6></th>
 			<th style="width: 15%"><h6>RAZON SOCIAL</h6></th>
+<<<<<<< HEAD
 			<th style="width: 5%"><h6>TILDE<br>NO MUESTRA<br>EN PPP</h6></th>
+
+>>>>>>> 0ba5625bc57020b2d78814d9d158274ab8aa8da7
 			<th style="width: 5%"><h6>HABILITADO<br>PEDIDOS</h6></th>
 			<th style="width: 5%"><input type="submit" value="Grabar" class="btn btn-outline-success"></th>
 		</tr>
