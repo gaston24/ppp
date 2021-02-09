@@ -3,7 +3,7 @@ session_start();
 
 if(!isset($_SESSION['username'])){
 
-	header("Location:../sistemas/login.php");
+	header("Location:../../sistemas/login.php");
 
 }else{
 ?>	
@@ -58,6 +58,28 @@ if(!isset($_SESSION['username'])){
         <a href="https://app.powerbi.com/view?r=eyJrIjoiNjQ2OTIyMmItY2JjOS00MGUyLTkxMTMtMmZhNmUyYTQwYmM0IiwidCI6IjQ0Y2E2MmNkLTY4MjItNDZkNC05NTUxLTEzNDQ5N2ZmM2VjMiIsImMiOjR9" target="_blank" class="btn btn-primary">Abrir</a>
       </div>
     </div>
+  </div>
+
+</div>
+
+<div class="row mt-3">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Auditoria 599</h5>
+        
+        <a href="../../app/equis" target="_blank" class="btn btn-primary">Abrir</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <!-- <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Productos Fallados</h5>
+        
+        <a href="https://app.powerbi.com/view?r=eyJrIjoiNjQ2OTIyMmItY2JjOS00MGUyLTkxMTMtMmZhNmUyYTQwYmM0IiwidCI6IjQ0Y2E2MmNkLTY4MjItNDZkNC05NTUxLTEzNDQ5N2ZmM2VjMiIsImMiOjR9" target="_blank" class="btn btn-primary">Abrir</a>
+      </div>
+    </div> -->
   </div>
 
 </div>
