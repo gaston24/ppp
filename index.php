@@ -142,7 +142,7 @@ while($v=odbc_fetch_array($result_locales)){
 <div class="card-deck">
 
 <div class="card" style="width: 18rem;">
-	<a href="ppp.php"><img class="card-img-top" src="imagenes/<?php echo date('d')+10;?>.jpg" alt="Card image cap"></a>
+	<a href="ppp.php"><img class="card-img-top" src="../Imagenes/ppp/<?php echo random_int(1, 40);?>.jpg" alt="Card image cap"></a>
 	<div class="card-body">
 		<h5 class="card-title" align="center"><a href="ppp.php" style="color:black;text-decoration: none">Plazo Promedio de Pago</a></h5>
 	</div>
@@ -156,7 +156,7 @@ while($v=odbc_fetch_array($result_locales)){
 </div>
 
 <div class="card" style="width: 18rem;">
-	<a href="facturacion.php"><img class="card-img-top" src="imagenes/<?php echo date('d')+13;?>.jpg" alt="Card image cap"></a>
+	<a href="facturacion.php"><img class="card-img-top" src="../Imagenes/ppp/<?php echo random_int(1, 40);?>.jpg" alt="Card image cap"></a>
 	<div class="card-body">
 		<h5 class="card-title" align="center"><a href="facturacion.php" style="color:black;text-decoration: none">Facturacion acumulada del mes</a></h5>
 	</div>
@@ -173,7 +173,7 @@ while($v=odbc_fetch_array($result_locales)){
 </div>
 
 <div class="card" style="width: 18rem;">
-	<img class="card-img-top" src="imagenes/<?php echo date('d')+16;?>.jpg" alt="Card image cap">
+	<img class="card-img-top" src="../Imagenes/ppp/<?php echo random_int(1, 40);?>.jpg" alt="Card image cap">
 	<div class="card-body">
 		<h5 class="card-title" align="center">Estadisticas</h5>
 	</div>
