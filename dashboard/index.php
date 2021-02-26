@@ -32,9 +32,10 @@ if(!isset($_SESSION['username'])){
   <div class="col-sm-6">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">Nota de Crédito</h5>
+        <h5 class="card-title">Inventario Central</h5>
         
-        <a href="https://app.powerbi.com/view?r=eyJrIjoiYjk1ZWNiNzgtZGZjMS00MzA5LTgzNzUtMDU1OTFjMTJiN2RjIiwidCI6IjQ0Y2E2MmNkLTY4MjItNDZkNC05NTUxLTEzNDQ5N2ZmM2VjMiIsImMiOjR9" target="_blank" class="btn btn-primary">Abrir</a>
+        <a href="https://app.powerbi.com/view?r=eyJrIjoiYjYwYzA2NjktOGI1MC00MzRjLTlkZjMtYzgxMDQzMGE3ZTIzIiwidCI6IjQ0Y2E2MmNkLTY4MjItNDZkNC05NTUxLTEzNDQ5N2ZmM2VjMiIsImMiOjR9" target="_blank" class="btn btn-primary">Abrir</a>
+
       </div>
     </div>
   </div>
@@ -73,13 +74,14 @@ if(!isset($_SESSION['username'])){
     </div>
   </div>
   <div class="col-sm-6">
-    <!-- <div class="card">
+    <div class="card">
       <div class="card-body">
-        <h5 class="card-title">Productos Fallados</h5>
+        <h5 class="card-title">Nota de Crédito</h5>
         
-        <a href="https://app.powerbi.com/view?r=eyJrIjoiNjQ2OTIyMmItY2JjOS00MGUyLTkxMTMtMmZhNmUyYTQwYmM0IiwidCI6IjQ0Y2E2MmNkLTY4MjItNDZkNC05NTUxLTEzNDQ5N2ZmM2VjMiIsImMiOjR9" target="_blank" class="btn btn-primary">Abrir</a>
+        <a href="https://app.powerbi.com/view?r=eyJrIjoiYjk1ZWNiNzgtZGZjMS00MzA5LTgzNzUtMDU1OTFjMTJiN2RjIiwidCI6IjQ0Y2E2MmNkLTY4MjItNDZkNC05NTUxLTEzNDQ5N2ZmM2VjMiIsImMiOjR9" target="_blank" class="btn btn-primary">Abrir</a>
+        
       </div>
-    </div> -->
+    </div>
   </div>
 
 </div>
