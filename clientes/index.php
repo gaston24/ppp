@@ -10,49 +10,17 @@ if(!isset($_SESSION['username'])){
 <!doctype html>
 <html>
 <head>
-<?php include '../../css/header.php'; ?>
 <title>PPP - Administrar Clientes</title>
+<meta charset="utf-8">
+<link rel="shortcut icon" href="../../../css/icono.jpg" />
 
-<style>
-	
-table.table-fh {
-    width: 100%;
-}
-table.table-fh, table.table-fh > tbody > tr > td {
-    border-collapse: collapse;
-    border: 1px solid #000;
-}
-table.table-fh > thead {
-    display: table;
-    width: calc(100% - 17px);
-}
-table.table-fh > tbody {
-    display: block;
-    max-height: 75vh;
-    overflow-y: scroll;
-}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-table.table-fh.table-11c > thead > tr >th, table.table-fh.table-11c > tbody > tr > td {
-    width: calc(100% / 11);
-}
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-table.table-fh > thead > tr >th, table.table-fh > tbody > tr > td {
-    padding: 5px;
-    word-break: break-all;
-    text-align: left;
-}
-table.table-fh > tbody > tr {
-    display: table;
-    width: 100%;
-}
-table.table-fh > tbody > tr > td {
-    border: none;
-}
-body {
-	overflow-y: hidden;
-}
-
-</style>
+<link rel="stylesheet" href="style.css">
 
 </head>
 <body>
@@ -98,7 +66,6 @@ $result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
 	<div class="col"></div>
 </div>
   
-  <form action="procesar_clientes.php" method="post">
   <table class="table table-striped table-fh table-11c table-sm">
 	
 	<thead>
@@ -107,7 +74,6 @@ $result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
 			<th style="width: 15%"><h6>RAZON SOCIAL</h6></th>
 			<th style="width: 5%"><h6>TILDE<br>NO MUESTRA<br>EN PPP</h6></th>
 			<th style="width: 5%"><h6>HABILITADO<br>PEDIDOS</h6></th>
-			<th style="width: 5%"><input type="submit" value="Grabar" class="btn btn-outline-success"></th>
 		</tr>
 	</thead>
 
@@ -121,9 +87,8 @@ while($v=odbc_fetch_array($result)){
 	<tr>
 		<td style="width: 5%"> <a> <?= $v['COD_CLIENT']?> </a></td>
 		<td style="width: 15%"> <?= $v['RAZON_SOCI']?> </td>
-		<td style="width: 5%"> <input name="estado[]" type="checkbox" <?php if($v['SELEC']==1){ echo 'checked'; }?> value="<?= $v['COD_CLIENT']?>"> </td>
-		<td style="width: 5%"> <input name="habilitado[]" type="checkbox" <?php if($v['EXCLUYE_PEDIDOS']==1){ echo 'checked'; }?> value="<?= $v['COD_CLIENT']?>"> </td>
-		<td style="width: 5%"> </td>
+		<td style="width: 5%"> <input name="estado[]" type="checkbox" id="chkPpp" onClick="ppp('<?= $v['COD_CLIENT']?>')" <?php if($v['SELEC']==1){ echo 'checked'; }?> value="<?= $v['COD_CLIENT']?>"> </td>
+		<td style="width: 5%"> <input name="habilitado[]" type="checkbox" id="chkPedido" onClick="pedidos('<?= $v['COD_CLIENT']?>')" <?php if($v['EXCLUYE_PEDIDOS']==1){ echo 'checked'; }?> value="<?= $v['COD_CLIENT']?>"> </td>
 	</tr>
 		
 		
@@ -136,13 +101,12 @@ while($v=odbc_fetch_array($result)){
 </tbody>
 </div>
 </table>
-</form>
 
 </div>
 
 </div>
 
-
+<script src="main.js"></script>
 		
 </body>
 </html>
