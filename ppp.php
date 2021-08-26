@@ -24,6 +24,7 @@ if(!isset($_SESSION['username'])){
 
 <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='mayoristas/index.php'">Mayoristas</button>
 <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="location.href='franquicias/ppp.php'">Franquicias</button>
+<button type="button" class="btn btn-danger btn-lg btn-block" onclick="location.href='cheques/index.php'">Cheques (Beta)</button>
 
 </nav>
 
