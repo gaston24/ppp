@@ -1,3 +1,13 @@
+<?php 
+session_start(); 
+
+if(!isset($_SESSION['username']) || $_SESSION['username']!= 'directores' ){
+
+	header("Location:../../sistemas/login.php");
+
+}else{
+?>
+
 
 	
 <!doctype html>
@@ -163,4 +173,6 @@ $result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
 </body>
 </html>
 
-	
+<?php
+}
+?>
