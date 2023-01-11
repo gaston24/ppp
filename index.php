@@ -1,7 +1,7 @@
 <?php 
 session_start(); 
 
-if(!isset($_SESSION['username']) || $_SESSION['username']!= 'directores' ){
+if(!isset($_SESSION['username']) || $_SESSION['permisos']!= 4 ){
 
 	header("Location:../sistemas/login.php");
 
@@ -181,9 +181,9 @@ while($v=odbc_fetch_array($result_locales)){
 		<li class="list-group-item"><a href="estadisticas/index.php" style="color:black;text-decoration: none">Ventas - Locales Propios</a></li>
 		<li class="list-group-item"><a href="estadisticasFranquicias/index.php" style="color:black;text-decoration: none">Ventas - Franquicias</a></li>
 	
-		<li class="list-group-item"> <a href="../bi/indicadores.php" target="_blank" style="color:black;text-decoration: none">Ventas (BI)</a></li>
-		<li class="list-group-item"> <a href="../bi/index.php" target="_blank" style="color:black;text-decoration: none">Ecommerce (BI)</a></li>
-		<li class="list-group-item"> <a href="dashboard/" target="_blank" style="color:black;text-decoration: none">Administracion - Stock (BI)</a></li>
+		<li class="list-group-item"> <a href="../bi/indicadores.php" target="_blank" style="color:black;text-decoration: none">Reporting BI</a></li>
+		<li class="list-group-item"> <a href="../bi/index.php" target="_blank" style="color:black;text-decoration: none">Ecommerce <strong>(No usar)</strong></a></li>
+		<li class="list-group-item"> <a href="dashboard/" target="_blank" style="color:black;text-decoration: none">Administracion - Stock <strong>(No usar)</strong></a></li>
 	</ul>
 	
 </div>

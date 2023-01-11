@@ -1,7 +1,7 @@
 <?php 
 session_start(); 
 
-if(!isset($_SESSION['username']) || $_SESSION['username']!= 'directores' ){
+if(!isset($_SESSION['username']) || $_SESSION['permisos']!= 4 ){
 
 	header("Location:../../sistemas/login.php");
 
@@ -90,15 +90,15 @@ $result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
 
 		<td style="width: 5%"> <?php echo $v['NRO_SUCURS'];?> </td>
 		<td style="width: 18%"> <?php echo $v['DESC_SUCURSAL'];?> </td>
-		<td style="width: 12%"> <?php echo number_format($v['IMPORTE'], 0, '', '.'); ?> </td>
-		<td style="width: 5%"> <?php echo number_format($v['COMP'], 0, '', '.') ;?> </td>
-		<td style="width: 8%"> <?php echo number_format($v['ARTICULOS'], 0, '', '.') ;?> </td>
+		<td style="width: 12%"> <?php echo number_format($v['IMPORTE'], 0, '', ','); ?> </td>
+		<td style="width: 5%"> <?php echo number_format($v['COMP'], 0, '', ',') ;?> </td>
+		<td style="width: 8%"> <?php echo number_format($v['ARTICULOS'], 0, '', ',') ;?> </td>
 		<td style="width: 8%"> <?php echo (int)($v['PROM_TICKET']) ;?> </td>
-		<td style="width: 5%"> <?php echo number_format($v['CANT_TICKET_2DO'], 0, '', '.') ; ?> </td>
+		<td style="width: 5%"> <?php echo number_format($v['CANT_TICKET_2DO'], 0, '', ',') ; ?> </td>
 		<td style="width: 5%"> <?php echo $v['PROM_2DO'] ;?> </td>
-		<td style="width: 5%"> <?php echo number_format($v['CANT_TICKET_3ER'], 0, '', '.') ;?> </td>
+		<td style="width: 5%"> <?php echo number_format($v['CANT_TICKET_3ER'], 0, '', ',') ;?> </td>
 		<td style="width: 5%"> <?php echo $v['PROM_3ER'] ;?> </td>
-		<td style="width: 8%"> <?php echo number_format($v['CANT_CAMBIOS'], 0, '', '.') ;?> </td>
+		<td style="width: 8%"> <?php echo number_format($v['CANT_CAMBIOS'], 0, '', ',') ;?> </td>
 		<td style="width: 8%"> <?php echo $v['PORC_CAMBIOS'] ;?> </td>
 		<td style="width: 8%"> <?php echo $v['PORC_INCREM'] ;?> </td>
 			
@@ -121,17 +121,17 @@ $result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
 	<tr>
 		<td style="width: 5%"><h6></h6></td>
 		<td style="width: 18%"><h6>TOTAL</h6></td>
-		<td style="width: 12%"><h6><?php echo number_format($importe, 0, '', '.') ;?></h6></td>
-		<td style="width: 5%"><h6><?php echo number_format($comp, 0, '', '.') ;?></h6></td>
-		<td style="width: 8%"><h6><?php echo number_format($articulos, 0, '', '.') ;?></h6></td>
+		<td style="width: 12%"><h6><?php echo number_format($importe, 0, '', ',') ;?></h6></td>
+		<td style="width: 5%"><h6><?php echo number_format($comp, 0, '', ',') ;?></h6></td>
+		<td style="width: 8%"><h6><?php echo number_format($articulos, 0, '', ',') ;?></h6></td>
 		<td style="width: 8%"><h6><?php echo (int)($importe/$comp) ;?></h6></td>
-		<td style="width: 5%"><h6><?php echo number_format($cant_2do, 0, '', '.') ;?></h6></td>
+		<td style="width: 5%"><h6><?php echo number_format($cant_2do, 0, '', ',') ;?></h6></td>
 		<td style="width: 5%"><h6><?php echo number_format((($cant_2do/$comp)*100), 1, ',', '.') ;?></h6></td>
-		<td style="width: 5%"><h6><?php echo number_format($cant_3er, 0, '', '.') ;?></h6></td>
+		<td style="width: 5%"><h6><?php echo number_format($cant_3er, 0, '', ',') ;?></h6></td>
 		<td style="width: 5%"><h6><?php echo number_format((($cant_3er/$comp)*100), 1, ',', '.') ;?></h6></td>
-		<td style="width: 8%"><h6><?php echo number_format($cant_cambios, 0, '', '.') ;?></h6></td>
+		<td style="width: 8%"><h6><?php echo number_format($cant_cambios, 0, '', ',') ;?></h6></td>
 		<td style="width: 8%"><h6><?php echo number_format((($cant_cambios/$comp)*100), 1, ',', '.') ;?></h6></td>
-		<td style="width: 8%"><h6><?php echo number_format(($increm/$cont), 1, ',', '.') ;?></h6></td>
+		<td style="width: 8%"><h6><?php echo number_format(($increm/$cont), 1, ',', ',') ;?></h6></td>
 	</tr>
 </tbody>
 </div>

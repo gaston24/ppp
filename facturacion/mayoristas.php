@@ -1,7 +1,7 @@
 <?php 
 session_start(); 
 
-if(!isset($_SESSION['username']) || $_SESSION['username']!= 'directores' ){
+if(!isset($_SESSION['username']) || $_SESSION['permisos']!= 4 ){
 
 	header("Location:../../sistemas/login.php");
 
@@ -91,9 +91,9 @@ $result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
 
 			<td style="width: 5%"> <?php echo $v['CANAL'];?> </td>
 			
-			<td style="width: 5%"> <?php echo number_format($v['MES_ACTUAL'], 0, '', '.') ;?> </td>
+			<td style="width: 5%"> <?php echo number_format($v['MES_ACTUAL'], 0, '', ',') ;?> </td>
 			
-			<td style="width: 5%"> <?php echo number_format($v['MES_ANTERIOR'], 0, '', '.') ;?> </td>
+			<td style="width: 5%"> <?php echo number_format($v['MES_ANTERIOR'], 0, '', ',') ;?> </td>
 			
 			<td style="width: 5%"> <?php echo number_format($v['DIF_MES'], 0, '', '.').' %' ;?> </td>
 			
@@ -120,11 +120,11 @@ $result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
 	<tr>
 
 			<td style="width: 5%"><h5 align="center">TOTAL</h5></td>
-			<td style="width: 5%"><h5><?php echo number_format($mes_ac, 0, '', '.') ;?></h5></td>
-			<td style="width: 5%"><h5><?php echo number_format($mes_an, 0, '', '.') ;?></h5></td>
+			<td style="width: 5%"><h5><?php echo number_format($mes_ac, 0, '', ',') ;?></h5></td>
+			<td style="width: 5%"><h5><?php echo number_format($mes_an, 0, '', ',') ;?></h5></td>
 			<td style="width: 5%"><h5><?php echo number_format((($mes_ac/$mes_an)-1)*100, 2, ',', '.').' %' ;?></h5></td>
-			<td style="width: 5%"><h5><?php echo number_format($anio_ac, 0, '', '.') ;?></h5></td>
-			<td style="width: 5%"><h5><?php echo number_format($anio_an, 0, '', '.') ;?></h5></td>
+			<td style="width: 5%"><h5><?php echo number_format($anio_ac, 0, '', ',') ;?></h5></td>
+			<td style="width: 5%"><h5><?php echo number_format($anio_an, 0, '', ',') ;?></h5></td>
 			<td style="width: 5%"><h5><?php echo number_format((($anio_ac/$anio_an)-1)*100, 2, ',', '.').' %' ;?></h5></td>
 	</tr>	
 	

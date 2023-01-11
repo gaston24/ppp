@@ -1,7 +1,7 @@
 <?php 
 session_start(); 
 
-if(!isset($_SESSION['username']) || $_SESSION['username']!= 'directores' ){
+if(!isset($_SESSION['username']) || $_SESSION['permisos']!= 4 ){
 
 	header("Location:../sistemas/login.php");
 
@@ -53,7 +53,7 @@ $result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
 			<th style="width: 5%"><h6>CUPO<br>GRUPO</h6></th>
 			<th style="width: 5%"><h6>SALDO<br>CC</h6></th>
 			<th style="width: 5%"><h6>VENCIDAS</h6></th>
-			<th style="width: 5%"><h6>PEDIDOS<br>ABIEROS</h6></th>
+			<th style="width: 5%"><h6>PEDIDOS<br>ABIERTOS</h6></th>
 			<th style="width: 5%"><h6>TOTAL<br>CHEQUES</h6></th>
 			<th style="width: 5%"><h6>CHEQUES<br>10 DIAS</h6></th>
 			<th style="width: 5%"><h6>TOTAL<br>DEUDA</h6></th>

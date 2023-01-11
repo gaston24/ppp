@@ -1,7 +1,7 @@
 <?php 
 session_start(); 
 
-if(!isset($_SESSION['username']) || $_SESSION['username']!= 'directores' ){
+if(!isset($_SESSION['username']) || $_SESSION['permisos']!= 4 ){
 
 	header("Location:../../sistemas/login.php");
 
@@ -91,9 +91,9 @@ $result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
 	<tr>
 
 		<td style="width: 10%"> <a href="detalle_mes.php?mes=<?php echo $v['MES']; ?>"> <?php echo $v['MES'];?> </a> </td>
-		<td style="width: 10%"> <?php echo number_format($v['IMPORTE'], 0, '', '.'); ?> </td>
-		<td style="width: 8%"> <?php echo number_format($v['COMP'], 0, '', '.') ;?> </td>
-		<td style="width: 8%"> <?php echo number_format($v['ARTICULOS'], 0, '', '.') ;?> </td>
+		<td style="width: 10%"> <?php echo number_format($v['IMPORTE'], 0, '', ','); ?> </td>
+		<td style="width: 8%"> <?php echo number_format($v['COMP'], 0, '', ',') ;?> </td>
+		<td style="width: 8%"> <?php echo number_format($v['ARTICULOS'], 0, '', ',') ;?> </td>
 		<td style="width: 8%"> <?php echo (int)($v['PROM_TICKET']) ;?> </td>
 		<td style="width: 8%"> <?php echo number_format($v['CANT_TICKET_2DO'], 0, '', '.') ; ?> </td>
 		<td style="width: 8%"> <?php echo $v['PROM_2DO'] ;?> </td>
@@ -121,11 +121,11 @@ $result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
 ?>
 	<tr>
 		<td style="width: 10%"><h6>TOTAL</h6></td>
-		<td style="width: 10%"><h6><?php echo number_format($importe, 0, '', '.') ;?></h6></td>
-		<td style="width: 8%"><h6><?php echo number_format($comp, 0, '', '.') ;?></h6></td>
-		<td style="width: 8%"><h6><?php echo number_format($articulos, 0, '', '.') ;?></h6></td>
+		<td style="width: 10%"><h6><?php echo number_format($importe, 0, '', ',') ;?></h6></td>
+		<td style="width: 8%"><h6><?php echo number_format($comp, 0, '', ',') ;?></h6></td>
+		<td style="width: 8%"><h6><?php echo number_format($articulos, 0, '', ',') ;?></h6></td>
 		<td style="width: 8%"><h6><?php echo (int)($importe/$comp) ;?></h6></td>
-		<td style="width: 8%"><h6><?php echo number_format($cant_2do, 0, '', '.') ;?></h6></td>
+		<td style="width: 8%"><h6><?php echo number_format($cant_2do, 0, '', ',') ;?></h6></td>
 		<td style="width: 8%"><h6><?php echo number_format((($cant_2do/$comp)*100), 1, ',', '.') ;?></h6></td>
 		<td style="width: 8%"><h6><?php echo number_format($cant_3er, 0, '', '.') ;?></h6></td>
 		<td style="width: 8%"><h6><?php echo number_format((($cant_3er/$comp)*100), 1, ',', '.') ;?></h6></td>
@@ -156,6 +156,8 @@ $result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
 			<button type="button" class="btn btn-primary ml-1 mr-1" onclick="location.href='historial/historial_index.php?anio=2018'">2018</button>
 			<button type="button" class="btn btn-secondary ml-1 mr-1" onclick="location.href='historial/historial_index.php?anio=2019'">2019</button>
 			<button type="button" class="btn btn-primary ml-1 mr-1" onclick="location.href='historial/historial_index.php?anio=2020'">2020</button>
+                        <button type="button" class="btn btn-primary ml-1 mr-1" onclick="location.href='historial/historial_index.php?anio=2021'">2021</button>
+                       
 		</div>
 	</div>
 	<div class="col-3">

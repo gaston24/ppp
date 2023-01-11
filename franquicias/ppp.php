@@ -1,7 +1,7 @@
 <?php 
 session_start(); 
 
-if(!isset($_SESSION['username']) || $_SESSION['username']!= 'directores' ){
+if(!isset($_SESSION['username']) || $_SESSION['permisos']!= 4 ){
 
 	header("Location:../../sistemas/login.php");
 
@@ -15,8 +15,7 @@ if(!isset($_SESSION['username']) || $_SESSION['username']!= 'directores' ){
 </head>
 <body>
 
-
-<div >
+<div>
 <?php
 
 $dsn = "1 - CENTRAL";
@@ -41,7 +40,13 @@ $result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
 
 ?>
 <?php include '../agrega_clientes.php'?>
-<div style="width:100%">
+
+	<div class="ml-2 mt-2 mb-4" id="busqRapida">
+		<label id="textBusqueda">Busqueda rapida:</label>
+		<input type="text" id="textBox"  placeholder="Sobre cualquier campo..." onkeyup="myFunction()"  class="form-control form-control-sm" style="max-width: 40vh;"></input>  
+	</div>
+
+<div>
   
   <table class="table table-striped table-fh table-11c">
 	
@@ -62,7 +67,7 @@ $result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
 	</thead>
 
 	<div >
-	<tbody >
+	<tbody id="table" style="max-height: 80vh;">
 <?php
 
 	$saldo_cc = 0;
@@ -175,3 +180,6 @@ $result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
 <?php
 }
 ?>
+
+<script src="../js/main.js"></script>
+

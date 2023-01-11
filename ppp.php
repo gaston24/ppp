@@ -1,7 +1,7 @@
 <?php 
 session_start(); 
 
-if(!isset($_SESSION['username']) || $_SESSION['username']!= 'directores' ){
+if(!isset($_SESSION['username']) || $_SESSION['permisos']!= 4 ){
 
 	header("Location:../sistemas/login.php");
 
@@ -9,8 +9,14 @@ if(!isset($_SESSION['username']) || $_SESSION['username']!= 'directores' ){
 ?>	
 <!doctype html>
 <head>
+	
 <title>PPP - Canal</title>
 <?php include '../css/header.php'; ?>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/style.css">
+
 </head>
 <body>
 
@@ -21,11 +27,13 @@ if(!isset($_SESSION['username']) || $_SESSION['username']!= 'directores' ){
 <h2 align="center">Seleccionar Canal</h2></br>
 
 <nav style="margin-left:20%; margin-right:20%">
-
-<button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='mayoristas/index.php'">Mayoristas</button>
-<button type="button" class="btn btn-secondary btn-lg btn-block" onclick="location.href='franquicias/ppp.php'">Franquicias</button>
-<button type="button" class="btn btn-danger btn-lg btn-block" onclick="location.href='cheques/index.php'">Cheques (Beta)</button>
-
+<div class="btnGroup">
+	<button class="btn btn-success btn-lg btn-block mb-4" id="btn_refresh" >Actualizar Credito</button>
+	<div id="boxLoading"></div>
+	<button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='mayoristas/index.php'">Mayoristas</button>
+	<button type="button" class="btn btn-secondary btn-lg btn-block" onclick="location.href='franquicias/ppp.php'">Franquicias</button>
+	<!-- <button type="button" class="btn btn-danger btn-lg btn-block" onclick="location.href='cheques/index.php'">Cheques (Beta)</button> -->
+</div>
 </nav>
 
 
@@ -193,7 +201,9 @@ $result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
 
 </body>
 
+<script src="js/main.js" charset="utf-8"></script>
 
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </html>
 <?php
