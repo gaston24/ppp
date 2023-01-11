@@ -151,13 +151,31 @@ $result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
 	</div>
 	<div class="col-6" >
 		<div class="row justify-content-md-center">
-			<button type="button" class="btn btn-primary ml-1 mr-1" onclick="location.href='historial/historial_index.php?anio=2016'">2016</button>
+			<!-- <button type="button" class="btn btn-primary ml-1 mr-1" onclick="location.href='historial/historial_index.php?anio=2016'">2016</button>
 			<button type="button" class="btn btn-secondary ml-1 mr-1" onclick="location.href='historial/historial_index.php?anio=2017'">2017</button>
 			<button type="button" class="btn btn-primary ml-1 mr-1" onclick="location.href='historial/historial_index.php?anio=2018'">2018</button>
 			<button type="button" class="btn btn-secondary ml-1 mr-1" onclick="location.href='historial/historial_index.php?anio=2019'">2019</button>
 			<button type="button" class="btn btn-primary ml-1 mr-1" onclick="location.href='historial/historial_index.php?anio=2020'">2020</button>
-                        <button type="button" class="btn btn-primary ml-1 mr-1" onclick="location.href='historial/historial_index.php?anio=2021'">2021</button>
-                       
+            <button type="button" class="btn btn-primary ml-1 mr-1" onclick="location.href='historial/historial_index.php?anio=2021'">2021</button>
+                        -->
+				<?php
+
+					$firstYear = date("Y") - 5;
+					$currentYear = date("Y");
+
+					$status = 1;
+
+
+					for($i = $firstYear ; $i < $currentYear; $i++){
+
+						$botton = ($status % 2 == 0) ? 'secondary': 'primary';
+
+						echo '<button type="button" class="btn btn-'.$botton.' ml-1 mr-1" onclick="location.href=\'historial/historial_index.php?anio='.$i.'\'">'.$i.'</button>';
+						
+						$status++;
+					}
+
+				?>
 		</div>
 	</div>
 	<div class="col-3">

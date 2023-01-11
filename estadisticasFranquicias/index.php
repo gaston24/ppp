@@ -167,7 +167,7 @@ $result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
 				$status = 1;
 
 
-				for($i = $firstYear ; $i <= $currentYear; $i++){
+				for($i = $firstYear ; $i < $currentYear; $i++){
 
 					$botton = ($status % 2 == 0) ? 'secondary': 'primary';
 
