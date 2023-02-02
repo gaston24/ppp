@@ -180,9 +180,8 @@ while($v=odbc_fetch_array($result_locales)){
 	<ul class="list-group list-group-flush">
 		<li class="list-group-item"><a href="estadisticas/index.php" style="color:black;text-decoration: none">Ventas - Locales Propios</a></li>
 		<li class="list-group-item"><a href="estadisticasFranquicias/index.php" style="color:black;text-decoration: none">Ventas - Franquicias</a></li>
-	
+		<li class="list-group-item"> <a href="../ppp/facturacion/saldoCaja.php" target="_blank" style="color:black;text-decoration: none">Saldo cajas - Locales Propios</a></li>
 		<li class="list-group-item"> <a href="../bi/indicadores.php" target="_blank" style="color:black;text-decoration: none">Reporting BI</a></li>
-		<li class="list-group-item"> <a href="../bi/index.php" target="_blank" style="color:black;text-decoration: none">Ecommerce <strong>(No usar)</strong></a></li>
 		<li class="list-group-item"> <a href="dashboard/" target="_blank" style="color:black;text-decoration: none">Administracion - Stock <strong>(No usar)</strong></a></li>
 	</ul>
 	
