@@ -13,8 +13,9 @@ if(!isset($_SESSION['username']) || $_SESSION['permisos']!= 4 ){
 <meta charset="utf-8">
 <title>PPP</title>
 <link rel="shortcut icon" href="icono.jpg" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="../css/style.css" class="rel">
 
 </head>
 <body>
@@ -74,7 +75,9 @@ $result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
 
                 <td align="center"><?php echo $v['COD_VENDED'] ;?></td>
 				
-				<td ><a href="ppp.php?cod=<?php echo $v['COD_VENDED'] ;?>"><?php echo $v['NOMBRE_VEN'];?></a></td>
+				<td ><a class="spinner" href="ppp.php?cod=<?php echo $v['COD_VENDED'] ;?>"><?php echo $v['NOMBRE_VEN'];?></a></td>
+        <!-- spinner -->
+	      <div id="boxLoading"></div>
 										
 		</tr>
 
@@ -104,3 +107,17 @@ $result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
 <?php
 }
 ?>
+
+<script>
+
+	//Spinner//
+	var btn = document.querySelectorAll('.spinner');
+   btn.forEach(el => {
+     el.addEventListener("click", ()=>{$("#boxLoading").addClass("loading")});
+   })
+
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
