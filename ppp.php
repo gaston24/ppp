@@ -29,10 +29,11 @@ if(!isset($_SESSION['username']) || $_SESSION['permisos']!= 4 ){
 <nav style="margin-left:20%; margin-right:20%">
 <div class="btnGroup">
 	<button class="btn btn-success btn-lg btn-block mb-4" id="btn_refresh" >Actualizar Credito</button>
-	<div id="boxLoading"></div>
-	<button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='mayoristas/index.php'">Mayoristas</button>
-	<button type="button" class="btn btn-secondary btn-lg btn-block" onclick="location.href='franquicias/ppp.php'">Franquicias</button>
+	<button type="button" class="btn btn-primary btn-lg btn-block spinner" onclick="location.href='mayoristas/index.php'">Mayoristas</button>
+	<button type="button" class="btn btn-secondary btn-lg btn-block spinner" onclick="location.href='franquicias/ppp.php'">Franquicias</button>
 	<!-- <button type="button" class="btn btn-danger btn-lg btn-block" onclick="location.href='cheques/index.php'">Cheques (Beta)</button> -->
+	<!-- spinner -->
+	<div id="boxLoading"></div>
 </div>
 </nav>
 
@@ -209,3 +210,17 @@ $result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
 <?php
 }
 ?>
+
+<script>
+
+	//Spinner//
+	var btn = document.querySelectorAll('.spinner');
+   btn.forEach(el => {
+     el.addEventListener("click", ()=>{$("#boxLoading").addClass("loading")});
+   })
+
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

@@ -14,6 +14,9 @@ if(!isset($_SESSION['username']) || $_SESSION['permisos']!= 4 ){
 <html>
 <head>
 <?php include '../../css/header.php'; ?>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+<link rel="stylesheet" href="../css/style.css">
 <title>Estadisticas</title>
 </head>
 <body>
@@ -92,7 +95,7 @@ $result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
 	?>
 	<tr>
 
-		<td style="width: 10%"> <a href="detalle_mes.php?mes=<?php echo $v['MES']; ?>"> <?php echo $v['MES'];?> </a> </td>
+		<td style="width: 10%"> <a class="spinner" href="detalle_mes.php?mes=<?php echo $v['MES']; ?>"> <?php echo $v['MES'];?> </a> </td>
 		<td style="width: 10%"> <?php echo number_format($v['IMPORTE'], 0, '', '.'); ?> </td>
 		<td style="width: 8%"> <?php echo number_format($v['COMP'], 0, '', '.') ;?> </td>
 		<td style="width: 8%"> <?php echo number_format($v['ARTICULOS'], 0, '', '.') ;?> </td>
@@ -171,7 +174,7 @@ $result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
 
 					$botton = ($status % 2 == 0) ? 'secondary': 'primary';
 
-					echo '<button type="button" class="btn btn-'.$botton.' ml-1 mr-1" onclick="location.href=\'historial/historial_index.php?anio='.$i.'\'">'.$i.'</button>';
+					echo '<button type="button" class="btn spinner btn-'.$botton.' ml-1 mr-1" onclick="location.href=\'historial/historial_index.php?anio='.$i.'\'">'.$i.'</button>';
 					
 					$status++;
 				}
@@ -182,6 +185,8 @@ $result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
 	</div>
 	<div class="col-3">
 	</div>
+	<!-- spinner -->
+	<div id="boxLoading"></div>
 </div>
 
 
@@ -196,3 +201,16 @@ $result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
 <?php
 }
 ?>
+
+<script>
+
+	//Spinner//
+	var btn = document.querySelectorAll('.spinner');
+   btn.forEach(el => {
+     el.addEventListener("click", ()=>{$("#boxLoading").addClass("loading")});
+   })
+
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+

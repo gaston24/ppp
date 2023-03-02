@@ -11,7 +11,12 @@ if(!isset($_SESSION['username']) || $_SESSION['permisos']!= 4 ){
 <head>
 <title>Inicio</title>
 <meta http-equiv="Refresh" content="600">
+
 <?php include '../css/header_simple.php'; ?>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+<link rel="stylesheet" href="css/style.css">
+
 </head>
 <body>
 
@@ -142,7 +147,7 @@ while($v=odbc_fetch_array($result_locales)){
 <div class="card-deck">
 
 <div class="card" style="width: 18rem;">
-	<a href="ppp.php"><img class="card-img-top" src="../Imagenes/ppp/<?php echo random_int(1, 40);?>.jpg" alt="Card image cap"></a>
+	<a class="spinner" href="ppp.php"><img class="card-img-top" src="../Imagenes/ppp/<?php echo random_int(1, 40);?>.jpg" alt="Card image cap"></a>
 	<div class="card-body">
 		<h5 class="card-title" align="center"><a href="ppp.php" style="color:black;text-decoration: none">Plazo Promedio de Pago</a></h5>
 	</div>
@@ -156,9 +161,9 @@ while($v=odbc_fetch_array($result_locales)){
 </div>
 
 <div class="card" style="width: 18rem;">
-	<a href="facturacion.php"><img class="card-img-top" src="../Imagenes/ppp/<?php echo random_int(1, 40);?>.jpg" alt="Card image cap"></a>
+	<a class="spinner" href="facturacion.php"><img class="card-img-top" src="../Imagenes/ppp/<?php echo random_int(1, 40);?>.jpg" alt="Card image cap"></a>
 	<div class="card-body">
-		<h5 class="card-title" align="center"><a href="facturacion.php" style="color:black;text-decoration: none">Facturacion acumulada del mes</a></h5>
+		<h5 class="card-title" align="center"><a class="spinner" href="facturacion.php" style="color:black;text-decoration: none">Facturacion acumulada del mes</a></h5>
 	</div>
 	<ul class="list-group list-group-flush">
 		<?php
@@ -167,7 +172,7 @@ while($v=odbc_fetch_array($result_locales)){
 			echo '<li class="list-group-item">'.$v['CANAL'].'&nbsp&nbsp&nbsp'.number_format($v['IMPORTE_ACTUAL'], 0, '', '.').'</li>';
 		}
 		?>		
-		<li class="list-group-item" align="center" ><a href="../ventas" style="color:black;text-decoration: none"><strong>Ventas Sucursales</strong></a></li>
+		<li class="list-group-item" align="center" ><a class="spinner" href="../ventas" style="color:black;text-decoration: none"><strong>Ventas Sucursales</strong></a></li>
 		<!--onClick="location.href='../ventas'"-->
 	</ul>
 </div>
@@ -178,11 +183,13 @@ while($v=odbc_fetch_array($result_locales)){
 		<h5 class="card-title" align="center">Estadisticas</h5>
 	</div>
 	<ul class="list-group list-group-flush">
-		<li class="list-group-item"><a href="estadisticas/index.php" style="color:black;text-decoration: none">Ventas - Locales Propios</a></li>
-		<li class="list-group-item"><a href="estadisticasFranquicias/index.php" style="color:black;text-decoration: none">Ventas - Franquicias</a></li>
-		<li class="list-group-item"> <a href="../ppp/facturacion/saldoCaja.php" target="_blank" style="color:black;text-decoration: none">Saldo cajas - Locales Propios</a></li>
-		<li class="list-group-item"> <a href="../bi/indicadores.php" target="_blank" style="color:black;text-decoration: none">Reporting BI</a></li>
-		<li class="list-group-item"> <a href="dashboard/" target="_blank" style="color:black;text-decoration: none">Administracion - Stock <strong>(No usar)</strong></a></li>
+		<li class="list-group-item"><a class="spinner" href="estadisticas/index.php" style="color:black;text-decoration: none">Ventas - Locales Propios</a></li>
+		<li class="list-group-item"><a class="spinner" href="estadisticasFranquicias/index.php" style="color:black;text-decoration: none">Ventas - Franquicias</a></li>
+		<li class="list-group-item"> <a class="spinner" href="../ppp/facturacion/saldoCaja.php" style="color:black;text-decoration: none">Saldo cajas - Locales Propios</a></li>
+		<li class="list-group-item"> <a class="spinner" href="../bi/indicadores.php" style="color:black;text-decoration: none">Reporting BI</a></li>
+		<li class="list-group-item"> <a class="spinner" href="dashboard/" style="color:black;text-decoration: none">Administracion - Stock <strong>(No usar)</strong></a></li>
+		<!-- spinner -->
+		<div id="boxLoading"></div>
 	</ul>
 	
 </div>
@@ -198,3 +205,19 @@ while($v=odbc_fetch_array($result_locales)){
 <?php
 }
 ?>
+
+<script>
+
+	//Spinner//
+	var btn = document.querySelectorAll('.spinner');
+   btn.forEach(el => {
+     el.addEventListener("click", ()=>{$("#boxLoading").addClass("loading")});
+   })
+
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
