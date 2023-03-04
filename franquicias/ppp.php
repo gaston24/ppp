@@ -59,6 +59,7 @@ $result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
 			<th style="width: 5%"><h6>SALDO<br>CC</h6></th>
 			<th style="width: 5%"><h6>VENCIDAS</h6></th>
 			<th style="width: 5%"><h6>PEDIDOS<br>ABIERTOS</h6></th>
+			<th style="width: 5%"><h6>ORDENES<br>PENDIENTES</h6></th>
 			<th style="width: 5%"><h6>TOTAL<br>CHEQUES</h6></th>
 			<th style="width: 5%"><h6>CHEQUES<br>10 DIAS</h6></th>
 			<th style="width: 5%"><h6>TOTAL<br>DEUDA</h6></th>
@@ -73,6 +74,7 @@ $result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
 	$saldo_cc = 0;
 	$vencidas = 0;
 	$monto_pedidos = 0;
+	$monto_ordenes = 0;
 	$total_cheques = 0;
 	$cheques_diez = 0;
 	$total_deuda = 0;
@@ -110,6 +112,8 @@ $result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
 			</td>
 			
 			<td style="width: 5%"> <?= number_format($v['MONTO_PEDIDOS'], 0, '', '.')?> </td>
+
+			<td style="width: 5%"> <?= number_format($v['MONTO_ORDENES'], 0, '', '.')?> </td>
 			
 			<td style="width: 5%"> 
 				<?php 
@@ -141,6 +145,7 @@ $result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
 	$saldo_cc += $v['SALDO_CC'];
 	$vencidas += $v['VENCIDAS'];
 	$monto_pedidos += $v['MONTO_PEDIDOS'];
+	$monto_ordenes += $v['MONTO_ORDENES'];
 	$total_cheques += $v['CHEQUE'];
 	$cheques_diez += $v['CHEQUES_10_DIAS'];
 	$total_deuda += $v['TOTAL_DEUDA'];
@@ -156,6 +161,7 @@ $result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
 		<td style="width: 5%"><h6><?= number_format($saldo_cc, 0, '', '.') ;?></h6></td>
 		<td style="width: 5%"><h6><?= number_format($vencidas, 0, '', '.') ;?></h6></td>
 		<td style="width: 5%"><h6><?= number_format($monto_pedidos, 0, '', '.') ;?></h6></td>
+		<td style="width: 5%"><h6><?= number_format($monto_ordenes, 0, '', '.') ;?></h6></td>
 		<td style="width: 5%"><h6><?= number_format($total_cheques, 0, '', '.') ;?></h6></td>
 		<td style="width: 5%"><h6><?= number_format($cheques_diez, 0, '', '.') ;?></h6></td>
 		<td style="width: 5%"><h6><?= number_format($total_deuda, 0, '', '.') ;?></h6></td>
