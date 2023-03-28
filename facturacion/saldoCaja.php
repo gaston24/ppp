@@ -24,6 +24,7 @@ $fecha = isset($_GET['fecha']) ? $_GET['fecha'] : date("Y-m-d", strtotime("-1 da
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../css/style.css"></link>
+    
 
 </head>
 <body>
@@ -41,11 +42,12 @@ $fecha = isset($_GET['fecha']) ? $_GET['fecha'] : date("Y-m-d", strtotime("-1 da
                                 <input type="date" class="form-control form-control-sm" name="fecha" value="<?= $fecha?>">
                             </div>
                             <div>
-                                <button type="submit" name="submit" class="btn btn-sm btn-primary" id="search" style="margin-top: 2rem; margin-left: 0.5rem">Filtrar <i class="bi bi-search"></i></button>
+                                <button type="submit" name="submit" class="btn btn-sm btn-primary" id="search" style="margin-top: 2rem; margin-left: 0.5rem;">Filtrar <i class="bi bi-search"></i></button>
                             </div>
                         </div>
                     </form>
                 </div>
+                <h3 style="margin-left: 30rem; font-size:40px"><i style="color: #dc3545;" class="bi bi-info-circle" data-toggle="tooltip" data-placement="right" title="Los saldos corresponden a los cierres de caja"></i></h3>
             </div>     
         </div>
     
@@ -55,7 +57,7 @@ $fecha = isset($_GET['fecha']) ? $_GET['fecha'] : date("Y-m-d", strtotime("-1 da
     if (isset($_GET['fecha'])) {
         $todosLosSaldos = $saldos->traerSaldosCajas($fecha);
     ?>
-    <div class="contTabla">
+    <div class="contTabla" style="width:90%; margin-left:2rem">
         <table class="table table-striped table-bordered display mt-2" id="myTable" >
             <thead style="position: sticky; top: 0; z-index: 10; color: wheat; background-color: #343a40; text-align: center;">
                 <tr>
@@ -104,6 +106,10 @@ $fecha = isset($_GET['fecha']) ? $_GET['fecha'] : date("Y-m-d", strtotime("-1 da
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap4.min.js"></script>
+    <!-- Incluir para que funcione el tooltip -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 <script>
 
@@ -114,6 +120,10 @@ $fecha = isset($_GET['fecha']) ? $_GET['fecha'] : date("Y-m-d", strtotime("-1 da
         }
         );
     });
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
 
 </script>
 
