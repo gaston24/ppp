@@ -64,7 +64,7 @@ $fecha = isset($_GET['fecha']) ? $_GET['fecha'] : date("Y-m-d", strtotime("-1 da
                     <th style="text-align: center;">FECHA</th>
                     <th style="text-align: center;">NRO. SUCURSAL</th>
                     <th style="text-align: center;">SUCURSAL</th>
-                    <th style="text-align: center;">SALDO CAJA</th>
+                    <th style="text-align: center;">SALDO CIERRE</th>
                 </tr>
             </thead>
             <tbody>
@@ -79,7 +79,7 @@ $fecha = isset($_GET['fecha']) ? $_GET['fecha'] : date("Y-m-d", strtotime("-1 da
                         <td><span><?= substr($key->FECHA->date, 0, 10); ?></span></td>
                         <td><span><?= $key->NRO_SUCURSAL ?></span></td>
                         <td><span><?= $key->DESC_SUCURSAL ?></span></td>
-                        <td><span><?= number_format($key->SALDO_CAJA, 2, '.', ',') ?></span></td>
+                        <td><span><?= number_format($key->SALDO_CIERRE, 2, '.', ',') ?></span></td>
                     </tr>
                     
             <?php
