@@ -70,7 +70,7 @@ $fecha = isset($_GET['fecha']) ? $_GET['fecha'] : date("Y-m-d", strtotime("-1 da
             <tbody>
                 <?php
                 
-                $saldo_caja = 0;
+                $saldo_cierre = 0;
 
                 $todosLosSaldos = json_decode($todosLosSaldos);
                 foreach ($todosLosSaldos as $valor => $key) {
@@ -84,7 +84,7 @@ $fecha = isset($_GET['fecha']) ? $_GET['fecha'] : date("Y-m-d", strtotime("-1 da
                     
             <?php
 	
-            $saldo_caja += $key->SALDO_CAJA;
+            $saldo_cierre += $key->SALDO_CIERRE;
                
             }
             ?>
@@ -95,7 +95,7 @@ $fecha = isset($_GET['fecha']) ? $_GET['fecha'] : date("Y-m-d", strtotime("-1 da
                 <td><h5 align="center">TOTAL</h5></td>
                 <td></td>
                 <td></td>
-			<td><h5><?= number_format($saldo_caja, 2, '.', ',') ;?></h5></td>
+			<td><h5><?= number_format($saldo_cierre, 2, '.', ',') ;?></h5></td>
     	</tr>
         <?php
         }
