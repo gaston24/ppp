@@ -47,7 +47,7 @@ $fecha = isset($_GET['fecha']) ? $_GET['fecha'] : date("Y-m-d", strtotime("-1 da
                         </div>
                     </form>
                 </div>
-                <h3 style="margin-left: 30rem; font-size:40px"><i style="color: #dc3545;" class="bi bi-info-circle" data-toggle="tooltip" data-placement="right" title="Los saldos corresponden a los cierres de caja"></i></h3>
+                <h3 style="margin-left: 30rem; font-size:40px"><i style="color: #dc3545;" class="bi bi-info-circle" data-toggle="tooltip" data-placement="right" title="Los saldos corresponden a la cuenta caja"></i></h3>
             </div>     
         </div>
     
@@ -64,13 +64,13 @@ $fecha = isset($_GET['fecha']) ? $_GET['fecha'] : date("Y-m-d", strtotime("-1 da
                     <th style="text-align: center;">FECHA</th>
                     <th style="text-align: center;">NRO. SUCURSAL</th>
                     <th style="text-align: center;">SUCURSAL</th>
-                    <th style="text-align: center;">SALDO CIERRE</th>
+                    <th style="text-align: center;">SALDO CAJA</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
                 
-                $saldo_cierre = 0;
+                $saldo_caja = 0;
 
                 $todosLosSaldos = json_decode($todosLosSaldos);
                 foreach ($todosLosSaldos as $valor => $key) {
@@ -79,12 +79,12 @@ $fecha = isset($_GET['fecha']) ? $_GET['fecha'] : date("Y-m-d", strtotime("-1 da
                         <td><span><?= substr($key->FECHA->date, 0, 10); ?></span></td>
                         <td><span><?= $key->NRO_SUCURSAL ?></span></td>
                         <td><span><?= $key->DESC_SUCURSAL ?></span></td>
-                        <td><span><?= number_format($key->SALDO_CIERRE, 2, '.', ',') ?></span></td>
+                        <td><span><?= number_format($key->SALDO_CAJA, 2, '.', ',') ?></span></td>
                     </tr>
                     
             <?php
 	
-            $saldo_cierre += $key->SALDO_CIERRE;
+            $saldo_caja += $key->SALDO_CAJA;
                
             }
             ?>
@@ -95,7 +95,7 @@ $fecha = isset($_GET['fecha']) ? $_GET['fecha'] : date("Y-m-d", strtotime("-1 da
                 <td><h5 align="center">TOTAL</h5></td>
                 <td></td>
                 <td></td>
-			<td><h5><?= number_format($saldo_cierre, 2, '.', ',') ;?></h5></td>
+			<td><h5><?= number_format($saldo_caja, 2, '.', ',') ;?></h5></td>
     	</tr>
         <?php
         }
