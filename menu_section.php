@@ -1,7 +1,7 @@
 <?php
 // Asegúrate de incluir aquí cualquier lógica PHP necesaria
 ?>
-<h2 class="text-center mb-3">Menú</h2>
+<h2 class="text-center mb-3"><i class="bi bi-list me-2"></i>Menú</h2>
 <div class="container">
     <div class="row">
         <!-- Ventas -->

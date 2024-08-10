@@ -74,15 +74,17 @@
             padding-right: 10px;
         }
         .sales-card {
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 10px;
-            background-color: #6f42c1;
-            padding: 1rem;
-            color: white;
-            margin-left: 0.2rem;
-            margin-right: 0.2rem;
+        border: none;
+        border-radius: 10px;
+        background-color: #6f42c1;
+        padding: 1rem;
+        color: white;
+        margin-left: 0.2rem;
+        margin-right: 0.2rem;
+        margin-bottom: 20px; /* Aumentado para dar más espacio a la sombra */
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 6px 6px rgba(0, 0, 0, 0.23);
+        position: relative;
+        z-index: 1;
         }
         .sales-card h2, .sales-card h3 {
             color: #ffffff;
@@ -215,7 +217,11 @@
                         });
                     break;
                 case 'indicadores':
-                    contentDiv.innerHTML = '<h2>Sección de Indicadores en desarrollo</h2>';
+                    fetch('indicadores_section.php')
+                        .then(response => response.text())
+                        .then(data => {
+                            contentDiv.innerHTML = data;
+                        });
                     break;
             }
             // Actualizar íconos activos
