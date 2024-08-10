@@ -35,7 +35,7 @@ EXEC SJ_PPP_DETALLADO_FR
 ";
 
 
-ini_set('max_execution_time', 300);
+ini_set('max_execution_time', 13300);
 $result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
 
 ?>

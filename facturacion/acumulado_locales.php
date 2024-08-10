@@ -79,9 +79,9 @@ $result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
 			
 			<td style="width: 15%; font-size:10pt"> <?php echo $v['DESC_SUCURSAL'];?> </td>
 			
-			<td style="width: 5%"> <?php echo number_format($v['MES_ACTUAL'], 0, '', ',') ;?> </td>
+			<td style="width: 5%"> <?php echo number_format($v['MES_ACTUAL'], 0, '', '.') ;?> </td>
 			
-			<td style="width: 5%"> <?php echo number_format($v['MES_ANTERIOR'], 0, '', ',') ;?> </td>
+			<td style="width: 5%"> <?php echo number_format($v['MES_ANTERIOR'], 0, '', '.') ;?> </td>
 			
 			<td style="width: 5%"> <?php echo number_format($v['DIF_MES'], 0, '', '.').' %' ;?> </td>
 			
@@ -108,13 +108,13 @@ $result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
 	<tr>
 
 			<td style="width: 5%"></td>
-			<td style="width: 15%"><h5 align="center">TOTAL</h5></td>
-			<td style="width: 5%"><h5><?php echo number_format($mes_ac, 0, '', ',') ;?></h5></td>
-			<td style="width: 5%"><h5><?php echo number_format($mes_an, 0, '', ',') ;?></h5></td>
-			<td style="width: 5%"><h5><?php echo number_format((($mes_ac/$mes_an)-1)*100, 2, ',', '.').' %' ;?></h5></td>
-			<td style="width: 5%"><h5><?php echo number_format($anio_ac, 0, '', '.') ;?></h5></td>
-			<td style="width: 5%"><h5><?php echo number_format($anio_an, 0, '', '.') ;?></h5></td>
-			<td style="width: 5%"><h5><?php echo number_format((($anio_ac/$anio_an)-1)*100, 2, ',', '.').' %' ;?></h5></td>
+			<td style="font-weight: bold; font-size: 17px; width: 15%">TOTAL</td>
+			<td style="font-weight: bold; font-size: 17px; width: 5%"><?php echo number_format($mes_ac, 0, '', '.') ;?></td>
+			<td style="font-weight: bold; font-size: 17px; width: 5%"><?php echo number_format($mes_an, 0, '', '.') ;?></td>
+			<td style="font-weight: bold; font-size: 17px; width: 5%"><?php echo number_format((($mes_ac/$mes_an)-1)*100, 2, ',', '.').' %' ;?></td>
+			<td style="font-weight: bold; font-size: 17px; width: 5%"><?php echo number_format($anio_ac, 0, '', '.') ;?></td>
+			<td style="font-weight: bold; font-size: 17px; width: 5%"><?php echo number_format($anio_an, 0, '', '.') ;?></td>
+			<td style="font-weight: bold; font-size: 17px; width: 5%"><?php echo number_format((($anio_ac/$anio_an)-1)*100, 2, ',', '.').' %' ;?></td>
 	</tr>	
 	
 </tbody>

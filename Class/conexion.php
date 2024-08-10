@@ -20,3 +20,10 @@ class Conexion{
          }
     }
 }
+
+
+    private $servidor = 'LAKERBIS';
+    private $database = 'LOCALES_LAKERS';
+    private $user = 'sa';
+    private $pass = 'Axoft';
+    private $character = 'UTF-8';
