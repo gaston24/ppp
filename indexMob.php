@@ -190,7 +190,7 @@
             </div>
             <div class="text-center" onclick="loadSection('indicadores', this)">
                 <i class="bi bi-speedometer2 footer-icon"></i>
-                <div>Indicadores</div>
+                <div>KPI Cobranza</div>
             </div>
         </div>
     </footer>

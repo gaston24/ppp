@@ -46,7 +46,7 @@ $indicador = $indicadoresTodos[0];
     <div class="col-12 mb-2">
         <div class="sales-card">
             <h2><i class="bi bi-wallet2 me-2"></i>Saldo Cuenta Corriente</h2>
-            <p><?php echo "$".number_format($indicador['SALDO_CUENTA_CO'], 0, ',', '.'); ?></p>
+            <p><?php echo "$".number_format($indicador['SALDO_CC'], 0, ',', '.'); ?></p>
         </div>
     </div>
 
@@ -54,7 +54,7 @@ $indicador = $indicadoresTodos[0];
     <div class="col-12 mb-2">
         <div class="sales-card">
             <h3><i class="bi bi-exclamation-triangle me-2"></i>Facturas Vencidas</h3>
-            <p><?php echo "$".number_format($indicador['FACTURAS_VENCIDAS'], 0, ',', '.'); ?></p>
+            <p><?php echo "$".number_format($indicador['VENCIDAS'], 0, ',', '.'); ?></p>
         </div>
     </div>
 
@@ -62,7 +62,7 @@ $indicador = $indicadoresTodos[0];
     <div class="col-12 mb-2">
         <div class="sales-card">
             <h3><i class="bi bi-calendar-check me-2"></i>Facturas a Vencer</h3>
-            <p><?php echo "$".number_format($indicador['FACTURAS_A_VENCER'], 0, ',', '.'); ?></p>
+            <p><?php echo "$".number_format($indicador['A_VENCER'], 0, ',', '.'); ?></p>
         </div>
     </div>
 
@@ -70,7 +70,7 @@ $indicador = $indicadoresTodos[0];
     <div class="col-12 mb-2">
         <div class="sales-card">
             <h3><i class="bi bi-credit-card me-2"></i>Cheques</h3>
-            <p><?php echo "$".number_format($indicador['CHEQUES'], 0, ',', '.'); ?></p>
+            <p><?php echo "$".number_format($indicador['CHEQUE'], 0, ',', '.'); ?></p>
         </div>
     </div>
 

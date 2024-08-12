@@ -2,222 +2,280 @@
 session_start(); 
 
 if(!isset($_SESSION['username']) || $_SESSION['permisos']!= 4 ){
+    header("Location:../sistemas/login.php");
+    exit();
+}
 
-	header("Location:../sistemas/login.php");
+require_once 'Class/indicadores.php';
+$indicadores = new Venta();
 
-}else{
-?>	
-<!doctype html>
+$datosIndicadores = $indicadores->traerIndicadores();
+$saldo_cc = $datosIndicadores[0]['SALDO_CC'];
+$vencidas = $datosIndicadores[0]['VENCIDAS'];
+$a_vencer = $datosIndicadores[0]['A_VENCER'];
+$cheques_10_dias = $datosIndicadores[0]['CHEQUES_10_DIAS'];
+$cheque = $datosIndicadores[0]['CHEQUE'];
+
+$datosFacturacion = $indicadores->traerImportes();
+?>
+
+<!DOCTYPE html>
+<html lang="es">
 <head>
-<title>Inicio</title>
-<meta http-equiv="Refresh" content="600">
-
-<?php include '../css/header_simple.php'; ?>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
-<link rel="stylesheet" href="css/style.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <meta http-equiv="Refresh" content="600">
+    <?php include '../css/header_simple.php'; ?>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 6px 6px rgba(0, 0, 0, 0.23);
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        .card-img-container {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+        .card-img-top {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .card-img-top.fade-out {
+            opacity: 0;
+        }
+        .card-img-top.fade-in {
+            opacity: 1;
+        }
+        .list-group-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: none;
+            padding: 0.75rem 1.25rem;
+        }
+        .list-group-item:nth-child(odd) {
+            background-color: rgba(0,0,0,.03);
+        }
+        .card-title {
+            color: #495057;
+            font-weight: 600;
+        }
+        .btn-action {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 0 0 8px 8px;
+            transition: background-color 0.3s;
+        }
+        .btn-action:hover {
+            background-color: #0056b3;
+        }
+        .btn-icon {
+            margin-right: 8px;
+        }
+        .list-group-item i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        .data-icon {
+            font-size: 1.1rem;
+        }
+    </style>
 </head>
 <body>
 
+<div class="container py-4">
+    <div class="alert alert-primary" role="alert" style="color:#007bff;">
+        <h3 class="text-center mb-2"><i class="bi bi-speedometer2 me-2"></i>Indicadores Gerenciales</h3>
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <!-- Plazo Promedio de Pago Card -->
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-img-container">
+                    <img class="card-img-top random-image fade-in" src="../Imagenes/ppp/100.jpg" alt="Card image cap" data-image-prefix="../Imagenes/ppp/">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title text-center">Plazo Promedio de Pago</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <span><i class="fas fa-balance-scale data-icon"></i>Saldo Cuenta Corriente</span>
+                        <span>$<?php echo number_format($saldo_cc, 0, ',', '.'); ?></span>
+                    </li>
+                    <li class="list-group-item">
+                        <span><i class="fas fa-exclamation-circle data-icon text-danger"></i>Facturas Vencidas</span>
+                        <span class="text-danger">$<?php echo number_format($vencidas, 0, ',', '.'); ?></span>
+                    </li>
+                    <li class="list-group-item">
+                        <span><i class="fas fa-clock data-icon"></i>Facturas A vencer</span>
+                        <span>$<?php echo number_format($a_vencer, 0, ',', '.'); ?></span>
+                    </li>
+                    <li class="list-group-item">
+                        <span><i class="fas fa-money-check data-icon"></i>Cheques</span>
+                        <span>$<?php echo number_format($cheque, 0, ',', '.'); ?></span>
+                    </li>
+                    <li class="list-group-item">
+                        <span><i class="fas fa-calendar-alt data-icon"></i>Cheques a 10 Días</span>
+                        <span>$<?php echo number_format($cheques_10_dias, 0, ',', '.'); ?></span>
+                    </li>
+                </ul>
+                <button class="btn-action" onclick="location.href='ppp.php'">
+                    <i class="fas fa-chart-line btn-icon"></i>Ver Detalles
+                </button>
+            </div>
+        </div>
 
+        <!-- Facturación Card -->
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-img-container">
+                    <img class="card-img-top random-image fade-in" src="../Imagenes/ppp/112.jpg" alt="Card image cap" data-image-prefix="../Imagenes/ppp/">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title text-center">Facturación Mes Actual</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <?php foreach ($datosFacturacion as $facturacion): ?>
+                        <li class="list-group-item">
+                            <span>
+                                <?php
+                                $icon = 'fa-store';
+                                switch ($facturacion['CANAL']) {
+                                    case 'LOCALES':
+                                        $icon = 'fa-store';
+                                        break;
+                                    case 'FRANQUICIAS':
+                                        $icon = 'fa-store-alt';
+                                        break;
+                                    case 'E-COMMERCE':
+                                        $icon = 'fa-shopping-cart';
+                                        break;
+                                    case 'MAYORISTAS':
+                                        $icon = 'fa-warehouse';
+                                        break;
+                                }
+                                ?>
+                                <i class="fas <?php echo $icon; ?> data-icon"></i>
+                                <?php echo $facturacion['CANAL']; ?>
+                            </span>
+                            <span>$<?php echo number_format($facturacion['IMPORTE_ACTUAL'], 0, ',', '.'); ?></span>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+                <button class="btn-action" onclick="location.href='facturacion.php'">
+                    <i class="fas fa-file-invoice-dollar btn-icon"></i>Ver Facturación
+                </button>
+            </div>
+        </div>
 
-<?php
-
-$dsn = "1 - CENTRAL";
-$user = "sa";
-$pass = "Axoft1988";
-
-
-
-$cid = odbc_connect($dsn, $user, $pass);
-$sql= "
-SET DATEFORMAT YMD
-
-SELECT SUM(SALDO_CC)SALDO_CC, SUM(VENCIDAS)VENCIDAS, SUM(A_VENCER)A_VENCER, SUM(CHEQUES_10_DIAS)CHEQUES_10_DIAS, SUM(CHEQUE)CHEQUE
-FROM
-(
-
-SELECT CASE COD_CLIENT WHEN 'FR' THEN 'FRANQUICIAS' WHEN 'MA' THEN 'MAYORISTAS' END COD_CLIENT, SALDO_CC, CHEQUE, CHEQUES_10_DIAS, TOTAL_DEUDA,
-A_VENCER, VENCIDAS
-FROM
-(
-
-SELECT LEFT(COD_CLIENTE, 2) COD_CLIENT, SUM(SALDO_CC)SALDO_CC, SUM(CHEQUE)CHEQUE, SUM(CHEQUES_10_DIAS)CHEQUES_10_DIAS, SUM(TOTAL_DEUDA)TOTAL_DEUDA,
-SUM(A_VENCER)A_VENCER, SUM(VENCIDAS)VENCIDAS
-FROM 
-(
-
-SELECT COD_CLIENTE, GRUPO_EMPR, CASE WHEN FECHA IS NULL THEN 'OK' ELSE 'NO' END PLAZO, RAZON_SOCIAL, PPP, CUPO_CRED, SALDO_CC, CHEQUE, CHEQUES_10_DIAS, TOTAL_DEUDA, 
-(CUPO_CRED - TOTAL_DEUDA) TOTAL_DISPONIBLE, A_VENCER, VENCIDAS
-FROM
-(
-	SELECT COD_CLIENTE, D.FECHA, RAZON_SOCIAL, GRUPO_EMPR, CAST(PPP AS INT)PPP, CAST(CUPO_CREDI AS int) CUPO_CRED, 
-	CAST(SALDO_CC AS INT)SALDO_CC, 
-	CAST(CASE WHEN B.CHEQUES IS NULL THEN 0 ELSE B.CHEQUES END AS INT)CHEQUE, 
-	CAST(CASE WHEN C.CHEQUES_PRONTO IS NULL THEN 0 ELSE C.CHEQUES_PRONTO END AS INT)CHEQUES_10_DIAS, 
-	CAST((SALDO_CC+(CASE WHEN B.CHEQUES IS NULL THEN 0 ELSE B.CHEQUES END)) AS INT) TOTAL_DEUDA, SUM(A_VENCER)A_VENCER, SUM(A.VENCIDAS)VENCIDAS
-	FROM
-	(
-		SELECT COD_CLIENTE, RAZON_SOCIAL, B.GRUPO_EMPR, C.NOMBRE_GRU , 
-		CAST(AVG(PPP) AS decimal(10,2)) PPP, CAST(AVG(DIAS) AS INT) DIAS, B.CUPO_CREDI, B.SALDO_CC, D.A_VENCER, D.VENCIDAS
-		FROM GC_VIEW_PPP A
-		INNER JOIN GVA14 B
-		ON A.COD_CLIENTE = B.COD_CLIENT
-		LEFT JOIN GVA62 C
-		ON B.GRUPO_EMPR = C.GRUPO_EMPR
-		LEFT JOIN SJ_SALDOS_CC D
-		ON A.COD_CLIENTE = D.COD_CLIENT
-		WHERE B.COD_CLIENT LIKE '[FM][AR]%'
-		AND FECHA_RECIBO >= GETDATE()-365
-		GROUP BY COD_CLIENTE, RAZON_SOCIAL, B.GRUPO_EMPR, C.NOMBRE_GRU, B.CUPO_CREDI, B.SALDO_CC, D.A_VENCER, D.VENCIDAS
-	)A
-	LEFT JOIN
-	(SELECT CLIENTE, SUM(IMPORTE_CH)CHEQUES FROM SBA14 WHERE FECHA_CHEQ >= GETDATE() AND ESTADO NOT IN ('X', 'R') GROUP BY CLIENTE) B
-	ON A.COD_CLIENTE = B.CLIENTE
-	LEFT JOIN
-	(SELECT CLIENTE, SUM(IMPORTE_CH)CHEQUES_PRONTO FROM SBA14 WHERE (FECHA_CHEQ >= GETDATE() AND FECHA_CHEQ <= GETDATE()+10) AND ESTADO NOT IN ('X', 'R') GROUP BY CLIENTE) C
-	ON A.COD_CLIENTE = C.CLIENTE
-	LEFT JOIN
-	(SELECT FECHA, COD_CLIENT FROM (SELECT MIN(FECHA_EMIS)FECHA, COD_CLIENT FROM GVA12 A WHERE FECHA_EMIS >= GETDATE()-45 
-	AND COD_CLIENT LIKE '[FM][AR]%' AND A.T_COMP = 'FAC' AND ESTADO = 'PEN' GROUP BY COD_CLIENT )A WHERE FECHA < GETDATE()-30)D
-	ON A.COD_CLIENTE = D.COD_CLIENT
-	GROUP BY COD_CLIENTE, D.FECHA, RAZON_SOCIAL, GRUPO_EMPR, PPP, CUPO_CREDI, SALDO_CC, (CASE WHEN B.CHEQUES IS NULL THEN 0 ELSE B.CHEQUES END), 
-	(CASE WHEN C.CHEQUES_PRONTO IS NULL THEN 0 ELSE C.CHEQUES_PRONTO END), ((SALDO_CC+(CASE WHEN B.CHEQUES IS NULL THEN 0 ELSE B.CHEQUES END)))
-)A
-
-)A
-
-GROUP BY LEFT(COD_CLIENTE, 2)
-)A
-
-)A
-";
-
-ini_set('max_execution_time', 300);
-$result=odbc_exec($cid,$sql)or die(exit("Error en odbc_exec"));
-while($v=odbc_fetch_array($result)){
-	$saldo_cc = $v['SALDO_CC'];
-	$vencidas = $v['VENCIDAS'];
-	$a_vencer = $v['A_VENCER'];
-	$cheques_10_dias = $v['CHEQUES_10_DIAS'];
-	$cheque = $v['CHEQUE'];
-	
-}
-
-
-
-
-
-$dsn_locales = "LOCALES";
-$user_locales = "sa";
-$pass_locales = "Axoft";
-
-
-
-$cid_locales = odbc_connect($dsn_locales, $user_locales, $pass_locales);
-$sql_locales= "
-SET DATEFORMAT YMD
-
-SELECT CANAL, CAST(MES_ACTUAL AS INT)IMPORTE_ACTUAL, CAST(MES_ANTERIOR AS INT)IMPORTE_ANTERIOR FROM SJ_FACTURACION_PPP_DIARIA
-ORDER BY 1
-";
-
-ini_set('max_execution_time', 300);
-$result_locales=odbc_exec($cid_locales,$sql_locales)or die(exit("Error en odbc_exec"));
-while($v=odbc_fetch_array($result_locales)){
-	
-}
-
-
-
-
-
-?>
-
-
-
-
-
-
-<div class="container">
-
-<br>
-
-<div class="card-deck">
-
-<div class="card" style="width: 18rem;">
-	<a class="spinner" href="ppp.php"><img class="card-img-top" src="../Imagenes/ppp/<?php echo random_int(1, 40);?>.jpg" alt="Card image cap"></a>
-	<div class="card-body">
-		<h5 class="card-title" align="center"><a href="ppp.php" style="color:black;text-decoration: none">Plazo Promedio de Pago</a></h5>
-	</div>
-	<ul class="list-group list-group-flush">
-		<li class="list-group-item"><a align="left">Saldo CC</a> 	&nbsp&nbsp	<?php echo number_format($saldo_cc, 0, '', '.') ;?>		</li>
-		<li class="list-group-item"><a align="left">Vencidas</a> 	&nbsp&nbsp	<?php echo number_format($vencidas, 0, '', '.') ;?>		</li>
-		<li class="list-group-item"><a align="left">A vencer</a> 	&nbsp&nbsp	<?php echo number_format($a_vencer, 0, '', '.') ;?>		</li>
-		<li class="list-group-item"><a align="left">Cheques</a>	&nbsp&nbsp	<?php echo number_format($cheque, 0, '', '.') ;?>	</li>
-		<li class="list-group-item"><a align="left">Cheques 10 Dias</a>	&nbsp&nbsp	<?php echo number_format($cheques_10_dias, 0, '', '.') ;?>	</li>
-	</ul>
+        <!-- Estadísticas Card -->
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-img-container">
+                    <img class="card-img-top random-image fade-in" src="../Imagenes/ppp/111.jpg" alt="Card image cap" data-image-prefix="../Imagenes/ppp/">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title text-center">Estadísticas</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <a class="text-decoration-none text-dark" href="estadisticas/index.php">
+                            <i class="fas fa-store data-icon"></i>Ventas - Locales Propios
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a class="text-decoration-none text-dark" href="estadisticasFranquicias/index.php">
+                            <i class="fas fa-store-alt data-icon"></i>Ventas - Franquicias
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a class="text-decoration-none text-dark" href="../ppp/facturacion/saldoCaja.php">
+                            <i class="fas fa-cash-register data-icon"></i>Saldo Cajas Locales Propios
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a class="text-decoration-none text-dark" href="../bi/indicadores.php">
+                            <i class="fas fa-chart-pie data-icon"></i>Reporting BI
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a class="text-decoration-none text-dark" href="../ventas/">
+                            <i class="fas fa-file-invoice-dollar data-icon"></i>Ventas Sucursales
+                        </a>
+                    </li>
+                </ul>
+                <button class="btn-action" onclick="location.href='estadisticas/index.php'">
+                    <i class="fas fa-chart-bar btn-icon"></i>Ver Estadísticas
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="card" style="width: 18rem;">
-	<a class="spinner" href="facturacion.php"><img class="card-img-top" src="../Imagenes/ppp/<?php echo random_int(1, 40);?>.jpg" alt="Card image cap"></a>
-	<div class="card-body">
-		<h5 class="card-title" align="center"><a class="spinner" href="facturacion.php" style="color:black;text-decoration: none">Facturacion acumulada del mes</a></h5>
-	</div>
-	<ul class="list-group list-group-flush">
-		<?php
-		$result_locales=odbc_exec($cid_locales,$sql_locales)or die(exit("Error en odbc_exec"));
-		while($v=odbc_fetch_array($result_locales)){
-			echo '<li class="list-group-item">'.$v['CANAL'].'&nbsp&nbsp&nbsp'.number_format($v['IMPORTE_ACTUAL'], 0, '', '.').'</li>';
-		}
-		?>		
-		<li class="list-group-item" align="center" ><a class="spinner" href="../ventas" style="color:black;text-decoration: none"><strong>Ventas Sucursales</strong></a></li>
-		<!--onClick="location.href='../ventas'"-->
-	</ul>
+<div id="boxLoading" class="position-fixed top-0 left-0 w-100 h-100 d-flex justify-content-center align-items-center bg-dark bg-opacity-50" style="display: none !important; z-index: 9999;">
+    <div class="spinner-border text-light" role="status">
+        <span class="visually-hidden">Cargando...</span>
+    </div>
 </div>
 
-<div class="card" style="width: 18rem;">
-	<img class="card-img-top" src="../Imagenes/ppp/<?php echo random_int(1, 40);?>.jpg" alt="Card image cap">
-	<div class="card-body">
-		<h5 class="card-title" align="center">Estadisticas</h5>
-	</div>
-	<ul class="list-group list-group-flush">
-		<li class="list-group-item"><a class="spinner" href="estadisticas/index.php" style="color:black;text-decoration: none">Ventas - Locales Propios</a></li>
-		<li class="list-group-item"><a class="spinner" href="estadisticasFranquicias/index.php" style="color:black;text-decoration: none">Ventas - Franquicias</a></li>
-		<li class="list-group-item"> <a class="spinner" href="../ppp/facturacion/saldoCaja.php" style="color:black;text-decoration: none">Saldo cajas - Locales Propios</a></li>
-		<li class="list-group-item"> <a class="spinner" href="../bi/indicadores.php" style="color:black;text-decoration: none">Reporting BI</a></li>
-		<li class="list-group-item"> <a class="spinner" href="dashboard/" style="color:black;text-decoration: none">Administracion - Stock <strong>(No usar)</strong></a></li>
-		<!-- spinner -->
-		<div id="boxLoading"></div>
-	</ul>
-	
-</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function showLoading() {
+        document.getElementById('boxLoading').style.display = 'flex';
+    }
 
-</div>
+    document.querySelectorAll('.btn-action').forEach(btn => {
+        btn.addEventListener('click', showLoading);
+    });
 
+    document.querySelectorAll('.list-group-item a').forEach(link => {
+        link.addEventListener('click', showLoading);
+    });
 
+    function changeRandomImages() {
+        const images = document.querySelectorAll('.random-image');
+        images.forEach(img => {
+            img.classList.remove('fade-in');
+            img.classList.add('fade-out');
+            
+            setTimeout(() => {
+                const prefix = img.getAttribute('data-image-prefix');
+                const randomNum = Math.floor(Math.random() * 20) + 1;
+                img.src = `${prefix}${randomNum}.jpg`;
+                
+                img.onload = () => {
+                    img.classList.remove('fade-out');
+                    img.classList.add('fade-in');
+                };
+            }, 500);
+        });
+    }
 
-</div>
+    setInterval(changeRandomImages, 10000);
+    changeRandomImages();
+</script>
 
 </body>
 </html>
-<?php
-}
-?>
-
-<script>
-
-	//Spinner//
-	var btn = document.querySelectorAll('.spinner');
-   btn.forEach(el => {
-     el.addEventListener("click", ()=>{$("#boxLoading").addClass("loading")});
-   })
-
-</script>
-
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-
