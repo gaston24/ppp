@@ -57,7 +57,7 @@ $fecha = isset($_GET['fecha']) ? $_GET['fecha'] : date("Y-m-d", strtotime("-1 da
     if (isset($_GET['fecha'])) {
         $todosLosSaldos = $saldos->traerSaldosCajas($fecha);
     ?>
-    <div class="contTabla" style="width:90%; margin-left:2rem">
+    <div class="contTabla" style="width:70%; margin-left:2rem">
         <table class="table table-striped table-bordered display mt-2" id="myTable" >
             <thead style="position: sticky; top: 0; z-index: 10; color: wheat; background-color: #343a40; text-align: center;">
                 <tr>
@@ -79,7 +79,7 @@ $fecha = isset($_GET['fecha']) ? $_GET['fecha'] : date("Y-m-d", strtotime("-1 da
                         <td><span><?= substr($key->FECHA->date, 0, 10); ?></span></td>
                         <td><span><?= $key->NRO_SUCURSAL ?></span></td>
                         <td><span><?= $key->DESC_SUCURSAL ?></span></td>
-                        <td><span><?= number_format($key->SALDO_CAJA, 2, '.', ',') ?></span></td>
+                        <td><span><?= '$'.number_format($key->SALDO_CAJA, 2, ',', '.') ?></span></td>
                     </tr>
                     
             <?php
@@ -95,7 +95,7 @@ $fecha = isset($_GET['fecha']) ? $_GET['fecha'] : date("Y-m-d", strtotime("-1 da
                 <td><h5 align="center">TOTAL</h5></td>
                 <td></td>
                 <td></td>
-			<td><h5><?= number_format($saldo_caja, 2, '.', ',') ;?></h5></td>
+			<td><h5><?= '$'.number_format($saldo_caja, 2, ',', '.') ;?></h5></td>
     	</tr>
         <?php
         }
