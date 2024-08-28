@@ -31,6 +31,33 @@
             </div>
         </div>
 
+        <!-- Objetivos -->
+        <div class="col-12 mb-3">
+            <div class="card menu-card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-bullseye menu-icon"></i>
+                        <h5 class="card-title mb-0">Objetivos Sucursales</h5>
+                    </div>
+                    <i class="bi bi-plus-lg"></i>
+                </div>
+                <div class="card-body" style="display: none;">
+                    <div class="sub-card p-2">
+                        <a href="../comercial/sucursales/ObjetivosPropios.php"><i class="bi bi-shop me-2"></i>Locales propios</a>
+                    </div>
+                    <div class="sub-card p-2">
+                        <a href="../comercial/sucursales/objetivosFranquicias.php"><i class="bi bi-building me-2"></i>Franquicias</a>
+                    </div>
+                    <div class="sub-card p-2">
+                        <a href="../comercial/sucursales/objetivosUruguay.php"><i class="bi bi-globe-americas me-2"></i></i>Uruguay</a>
+                    </div>
+                    <div class="sub-card p-2">
+                        <a href="../comercial/sucursales/objetivosTodos.php"><i class="bi bi-grid me-2"></i>Todos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Crédito -->
         <div class="col-12 mb-3">
             <div class="card menu-card">
@@ -48,6 +75,26 @@
                 </div>
             </div>
         </div>
+
+        <!-- Crédito -->
+        <div class="col-12 mb-3">
+            <div class="card menu-card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-gear-fill menu-icon"></i>
+                        <h5 class="card-title mb-0">Aplicaciones</h5>
+                    </div>
+                    <i class="bi bi-plus-lg"></i>
+                </div>
+                <div class="card-body" style="display: none;">
+                    <div class="sub-card p-2">
+                        <a href="../comercial/supervision/cargaGastos.php"><i class="bi bi-shop me-2"></i>Autorizar gastos supervisión</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
    
