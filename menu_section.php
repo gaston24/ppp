@@ -88,7 +88,7 @@
                 </div>
                 <div class="card-body" style="display: none;">
                     <div class="sub-card p-2">
-                        <a href="../comercial/supervision/cargaGastos.php"><i class="bi bi-shop me-2"></i>Autorizar gastos supervisión</a>
+                        <a href="../comercial/supervision/autorizarGastos.php"><i class="bi bi-shop me-2"></i>Autorizar gastos supervisión</a>
                     </div>
                 </div>
             </div>

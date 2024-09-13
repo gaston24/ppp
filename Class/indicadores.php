@@ -28,6 +28,14 @@ class Venta
         return $this->retornarArray($sql);
     }
 
+    public function traerIndicadoresTotal(){
+        $sql = "SET DATEFORMAT YMD 
+                SELECT SUM(SALDO_CC) SALDO_CC, SUM(VENCIDAS) VENCIDAS, SUM(A_VENCER) A_VENCER, SUM(CHEQUES_10_DIAS) CHEQUES_10_DIAS, 
+                    SUM(CHEQUE) CHEQUE, SUM(TOTAL_DEUDA) TOTAL_DEUDA
+                FROM RO_PPP_OPTIMIZADO";
+        return $this->retornarArray($sql);
+    }
+
     public function traerImportes(){
         $sql = "SET DATEFORMAT YMD
                 SELECT CANAL, CAST(MES_ACTUAL AS INT)IMPORTE_ACTUAL, CAST(MES_ANTERIOR AS INT)IMPORTE_ANTERIOR FROM [LAKERBIS].[LOCALES_LAKERS].[dbo].SJ_FACTURACION_PPP_DIARIA

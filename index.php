@@ -9,7 +9,7 @@ if(!isset($_SESSION['username']) || $_SESSION['permisos']!= 4 ){
 require_once 'Class/indicadores.php';
 $indicadores = new Venta();
 
-$datosIndicadores = $indicadores->traerIndicadores();
+$datosIndicadores = $indicadores->traerIndicadoresTotal();
 $saldo_cc = $datosIndicadores[0]['SALDO_CC'];
 $vencidas = $datosIndicadores[0]['VENCIDAS'];
 $a_vencer = $datosIndicadores[0]['A_VENCER'];
