@@ -199,16 +199,16 @@ $datosFacturacion = $indicadores->traerImportes();
                     <h5 class="card-title text-center">Estadísticas</h5>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
+                    <!-- <li class="list-group-item">
                         <a class="text-decoration-none text-dark" href="estadisticas/index.php">
                             <i class="fas fa-store data-icon"></i>Ventas - Locales Propios
                         </a>
-                    </li>
-                    <li class="list-group-item">
+                    </li> -->
+                    <!-- <li class="list-group-item">
                         <a class="text-decoration-none text-dark" href="estadisticasFranquicias/index.php">
                             <i class="fas fa-store-alt data-icon"></i>Ventas - Franquicias
                         </a>
-                    </li>
+                    </li> -->
                     <li class="list-group-item">
                         <a class="text-decoration-none text-dark" href="../ppp/facturacion/saldoCaja.php">
                             <i class="fas fa-cash-register data-icon"></i>Saldo Cajas Locales Propios
