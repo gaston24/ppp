@@ -224,6 +224,11 @@ $datosFacturacion = $indicadores->traerImportes();
                             <i class="fas fa-file-invoice-dollar data-icon"></i>Ventas Sucursales
                         </a>
                     </li>
+                    <li class="list-group-item">
+                        <a class="text-decoration-none text-dark" href="../comercial/supervision/autorizarGastos.php">
+                            <i class="fas fa-dollar-sign data-icon"></i>Autorizar Gastos
+                        </a>
+                    </li>
                 </ul>
                 <button class="btn-action" onclick="location.href='estadisticas/index.php'">
                     <i class="fas fa-chart-bar btn-icon"></i>Ver Estadísticas
