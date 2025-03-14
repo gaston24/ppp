@@ -181,4 +181,22 @@ class Venta
         return $this->retornarArray($sql);
     }
 
+    /**
+     * Obtiene los datos de la evolución del PPP de los últimos 12 meses para un cliente específico
+     * @param string $codCliente Código del cliente
+     * @return array Arreglo con los datos de la evolución del PPP del cliente
+     */
+    public function obtenerEvolucionPPPCliente($codCliente){
+        $sql = "SELECT 
+                    FORMAT(FECHA_RECIBO, 'yyyy-MM') AS MES,
+                    ROUND(AVG(PPP), 0) AS PPP_PROMEDIO,
+                    COUNT(*) AS CANTIDAD_OPERACIONES
+                FROM RO_VIEW_PPP_DASHBOARD
+                WHERE COD_CLIENTE = '$codCliente'
+                AND FECHA_RECIBO >= DATEADD(MONTH, -12, GETDATE())
+                GROUP BY FORMAT(FECHA_RECIBO, 'yyyy-MM')
+                ORDER BY FORMAT(FECHA_RECIBO, 'yyyy-MM')";
+        return $this->retornarArray($sql);
+    }
+
 }

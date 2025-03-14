@@ -265,19 +265,21 @@ if(!isset($_SESSION['username']) || $_SESSION['permisos']!= 4 ){
     <div class="table-container">
         <table class="table table-striped table-hover" id="table">
             <thead>
-                <tr>
-                    <th>CLIENTE</th>
-                    <th>RAZON SOCIAL</th>
-                    <th>PPP<br>12 meses</th>
-                    <th class="bg-cupo">CUPO<br>CREDITO</th>
-                    <th>SALDO<br>CC</th>
-                    <th>TOTAL<br>CHEQUES</th>
-                    <th class="bg-deuda">TOTAL<br>DEUDA</th>
-                    <th>PEDIDOS<br>ABIERTOS</th>
-                    <th>ORDENES<br>PENDIENTES</th>
-                    <th class="bg-disponible">DISPONIBLE</th>
-                    <th>ALERTAS</th>
-                </tr>
+            <tr>
+                <th>CLIENTE</th>
+                <th>RAZON SOCIAL</th>
+                <th>
+                    PPP<br>12 meses
+                </th>
+                <th class="bg-cupo">CUPO<br>CREDITO</th>
+                <th>SALDO<br>CC</th>
+                <th>TOTAL<br>CHEQUES</th>
+                <th class="bg-deuda">TOTAL<br>DEUDA</th>
+                <th>PEDIDOS<br>ABIERTOS</th>
+                <th>ORDENES<br>PENDIENTES</th>
+                <th class="bg-disponible">DISPONIBLE</th>
+                <th>ALERTAS</th>
+            </tr>
             </thead>
             <tbody>
             <?php
@@ -309,7 +311,18 @@ if(!isset($_SESSION['username']) || $_SESSION['permisos']!= 4 ){
                         <?php } ?>
                     </td>
 
-                    <td class="text-center"><?= $v['PPP']; ?></td>
+                    <td class="text-center">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <?= $v['PPP']; ?>
+                            <a href="#" class="btn-evolucion-ppp ms-2 btn btn-sm btn-outline-info" 
+                            data-bs-toggle="modal" data-bs-target="#modalEvolucionPPP" 
+                            data-cliente="<?= $v['COD_CLIENTE']; ?>"
+                            data-razon="<?= htmlspecialchars($v['RAZON_SOCIAL']); ?>"
+                            title="Ver evolución del PPP">
+                                <i class="fas fa-chart-line"></i>
+                            </a>
+                        </div>
+                    </td>
                     
                     <td class="text-end bg-cupo"><?= number_format($v['CUPO_CRED'], 0, '', '.'); ?></td>
                     
@@ -395,7 +408,11 @@ if(!isset($_SESSION['username']) || $_SESSION['permisos']!= 4 ){
     </div>
 </div>
 
+<!-- Incluir el modal -->
+<?php include 'modal-evolucion-ppp.php'; ?>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
 <script src="../js/main.js"></script>
 
 <script>
