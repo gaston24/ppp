@@ -2,28 +2,123 @@
 <?php
 
 class Conexion{
-    private $servidor = 'servidor';
-    private $database = 'LAKER_SA';
-    private $user = 'sa';
-    private $pass = 'Axoft1988';
-    private $character = 'UTF-8';
 
-    public function conectar(){
-        try {
-            $conexion_central = array( "Database"=>$this->database, "UID"=>$this->user, "PWD"=>$this->pass, "CharacterSet" => $this->character);
-            $cid_central = sqlsrv_connect($this->servidor, $conexion_central);
+    function __construct(){
+        require_once(__DIR__.'/classEnv.php');
 
-            return $cid_central;
-             
-         } catch (PDOException $e){
-                 echo $e->getMessage();
-         }
+        $vars = new DotEnv(__DIR__ . '/../.env');
+        $this->envVars = $vars->listVars();
+        
+        $this->host_central = $this->envVars['HOST_CENTRAL'];
+        $this->database_central = $this->envVars['DATABASE_CENTRAL'];
+        $this->database_uy = $this->envVars['DATABASE_UY'];
+        $this->host_locales = $this->envVars['HOST_LOCALES'];
+        $this->database_locales = $this->envVars['DATABASE_LOCALES'];
+        $this->database_sucUy = $this->envVars['DATABASE_SUC_UY'];
+        $this->user = $this->envVars['USER'];
+        $this->pass = $this->envVars['PASS'];
+        $this->pass_locales = $this->envVars['PASS_LOCALES'];
+        $this->character = $this->envVars['CHARACTER'];
+        $this->env = $this->envVars['ENV'];
+        $this->prefix = ($this->env == 'DEV') ? '[LAKERBIS].locales_lakers.dbo.' : '';
     }
+
+    private function servidor($nameServer) {
+        if($nameServer == 'central'){
+            return array('servidor', 'LAKER_SA');
+        }elseif($nameServer == 'locales'){
+            return array($this->host_locales, $this->database_locales);
+        }elseif($nameServer == 'uy'){
+            return array($this->host_central, $this->database_uy);
+        }elseif($nameServer == 'suc_uy'){
+            return array($this->host_locales, $this->database_sucUy);
+        }else{
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            }
+            return array($_SESSION['conexion_dns'], $_SESSION['base_nombre']);
+        }
+
+    }
+
+    public function conectar($nameServer = null) {
+        try {
+           
+            $serverDB = $this->servidor($nameServer);
+       
+            if($this->env == 'PROD' && (strtolower($serverDB[0]) == strtolower('lakerbis'))){
+                $pass = $this->pass_locales;
+            } else {
+                $pass = 'Axoft1988';
+            }
+       
+
+            $params = array( 
+                "Database" => $serverDB[1], 
+                "UID" => 'sa', 
+                "PWD" => $pass, 
+                "CharacterSet" => 'UTF-8'
+            );
+        
+
+            $cid = sqlsrv_connect($serverDB[0], $params);
+
+            if(!$cid) return false;
+
+  
+            $_SESSION['cid'] = $cid;
+            return $cid;
+            
+        } catch (Exception $e) {
+           
+            error_log("Error de conexión: " . $e->getMessage()); 
+            echo "Hubo un problema al conectar a la base de datos. Intente más tarde.";
+            return false;
+        }
+    }
+
+    private function buscarLocal($nameLocal){
+
+        $prefix = ($this->env == 'DEV') ? '[LAKERBIS].locales_lakers.dbo.' : '';
+
+        if($this->env == 'DEV'){
+            $database = $this->database_central;
+            $pass = $this->pass;
+        } else {
+            $database = $this->database_locales;
+            $pass = $this->pass_locales;
+        }
+
+        $sql = "select * from ".$prefix." sucursales_lakers where cod_client = '$nameLocal'";
+
+        $params = array( 
+            "Database" => $this->database_central, 
+            "UID" => $this->user, 
+            "PWD" => $this->pass, 
+            "CharacterSet" => $this->character
+        );
+
+        $cid = sqlsrv_connect($this->host_central, $params);
+
+        $stmt = sqlsrv_query($cid, $sql);
+
+        try {
+
+            // $next_result = sqlsrv_next_result($stmt);
+
+            while ($row = sqlsrv_fetch_array($stmt,SQLSRV_FETCH_ASSOC)) {
+
+                $v[] = $row;
+
+            }
+    
+            return $v[0];
+
+        } catch (\Throwable $th) {
+
+            print_r($th);
+
+        }
+    }
+    
 }
-
-
-    private $servidor = 'LAKERBIS';
-    private $database = 'LOCALES_LAKERS';
-    private $user = 'sa';
-    private $pass = 'Axoft';
-    private $character = 'UTF-8';
