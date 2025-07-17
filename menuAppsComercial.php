@@ -14,7 +14,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             min-height: 100vh;
             height: 100vh;
             display: flex;
@@ -41,17 +41,17 @@
         }
 
         .header h1 {
-            color: white;
+            color: #2d3748;
             font-size: 3rem;
-            font-weight: 300;
+            font-weight: 600;
             margin-bottom: 10px;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .header p {
-            color: rgba(255,255,255,0.9);
+            color: #4a5568;
             font-size: 1.2rem;
-            font-weight: 300;
+            font-weight: 400;
         }
 
         .apps-grid {
@@ -89,6 +89,7 @@
         .app-card:nth-child(3) { animation-delay: 0.3s; }
         .app-card:nth-child(4) { animation-delay: 0.4s; }
         .app-card:nth-child(5) { animation-delay: 0.5s; }
+        .app-card:nth-child(6) { animation-delay: 0.6s; }
         .app-card:nth-child(5) { animation-delay: 0.5s; }
 
         .app-card::before {
@@ -98,7 +99,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            background: linear-gradient(90deg, transparent, rgba(0,0,0,0.03), transparent);
             transition: left 0.5s;
         }
 
@@ -107,28 +108,28 @@
         }
 
         .app-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
         }
 
         .app-icon {
             width: 70px;
             height: 70px;
             margin: 0 auto 20px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 18px;
+            background: linear-gradient(135deg, #4a5568, #2d3748);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.8rem;
             color: white;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 4px 15px rgba(74, 85, 104, 0.3);
             transition: all 0.3s ease;
         }
 
         .app-card:hover .app-icon {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(74, 85, 104, 0.4);
         }
 
         .app-title {
@@ -148,11 +149,11 @@
         }
 
         .app-button {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #4a5568, #2d3748);
             color: white;
             border: none;
             padding: 12px 30px;
-            border-radius: 50px;
+            border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -163,7 +164,8 @@
 
         .app-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 6px 20px rgba(74, 85, 104, 0.3);
+            background: linear-gradient(135deg, #2d3748, #1a202c);
         }
 
         .floating-elements {
@@ -178,7 +180,7 @@
 
         .floating-circle {
             position: absolute;
-            background: rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.03);
             border-radius: 50%;
             animation: float 6s ease-in-out infinite;
         }
@@ -331,6 +333,13 @@
                 <div class="app-icon">📋</div>
                 <h3 class="app-title">Gestión de Proyectos</h3>
                 <p class="app-description">Administra y supervisa todos los proyectos de la organización de manera integral.</p>
+                <button class="app-button">Acceder</button>
+            </a>
+
+            <a href="../compras/presupuestos/" class="app-card">
+                <div class="app-icon">🛒</div>
+                <h3 class="app-title">Presupuesto de Compras</h3>
+                <p class="app-description">Gestiona y controla los presupuestos de compras para mercadería importada.</p>
                 <button class="app-button">Acceder</button>
             </a>
         </div>
