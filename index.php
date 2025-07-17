@@ -196,7 +196,7 @@ $datosFacturacion = $indicadores->traerImportes();
                     <img class="card-img-top random-image fade-in" src="../Imagenes/ppp/111.jpg" alt="Card image cap" data-image-prefix="../Imagenes/ppp/">
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title text-center">Estadísticas</h5>
+                    <h5 class="card-title text-center">Reportes / Aplicaciones</h5>
                 </div>
                 <ul class="list-group list-group-flush">
                     <!-- <li class="list-group-item">
@@ -227,7 +227,7 @@ $datosFacturacion = $indicadores->traerImportes();
                    
                 </ul>
                 <button class="btn-action" onclick="location.href='../ppp/menuAppsComercial.php'">
-                    <i class="fas fa-th-large btn-icon"></i>Aplicaciones Comercial
+                    <i class="fas fa-th-large btn-icon"></i>Aplicaciones
                 </button>
             </div>
         </div>
