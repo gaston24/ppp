@@ -308,6 +308,13 @@
                 <button class="app-button">Acceder</button>
             </a>
 
+            <a href="../comercial/supervision/presupuesto/gestionarPresupuestos.php" class="app-card">
+                <div class="app-icon">📈</div>
+                <h3 class="app-title">Gestión de Presupuestos</h3>
+                <p class="app-description">Crea y modifica los presupuestos de supervisión comercial.</p>
+                <button class="app-button">Acceder</button>
+            </a>
+
             <a href="../comercial/supervision/presupuesto/dashboard.php" class="app-card">
                 <div class="app-icon">📊</div>
                 <h3 class="app-title">Dashboard Presupuestos</h3>
@@ -322,10 +329,10 @@
                 <button class="app-button">Acceder</button>
             </a>
 
-            <a href="../comercial/supervision/presupuesto/gestionarPresupuestos.php" class="app-card">
-                <div class="app-icon">📈</div>
-                <h3 class="app-title">Gestión de Presupuestos</h3>
-                <p class="app-description">Crea y modifica los presupuestos de supervisión comercial.</p>
+            <a href="../projects/adminProyectos/cargarProyecto.php" class="app-card">
+                <div class="app-icon">📝</div>
+                <h3 class="app-title">Carga de Proyectos</h3>
+                <p class="app-description">Crea y registra nuevos proyectos en el sistema de gestión de proyectos.</p>
                 <button class="app-button">Acceder</button>
             </a>
 
