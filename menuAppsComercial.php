@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal de Aplicaciones</title>
+    <?php include '../css/header.php'; ?>
     <style>
         * {
             margin: 0;
@@ -347,6 +348,13 @@
                 <div class="app-icon">🛒</div>
                 <h3 class="app-title">Presupuesto de Compras</h3>
                 <p class="app-description">Gestiona y controla los presupuestos de compras para mercadería importada.</p>
+                <button class="app-button">Acceder</button>
+            </a>
+
+            <a href="../administracion/tesoreria/saldoCaja.php" class="app-card">
+                <div class="app-icon">🏦</div>
+                <h3 class="app-title">Saldo de Caja</h3>
+                <p class="app-description">Consulta y monitorea el saldo actual de la caja de tesorería en tiempo real.</p>
                 <button class="app-button">Acceder</button>
             </a>
         </div>
